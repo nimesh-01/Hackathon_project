@@ -2,6 +2,8 @@ import React, { lazy } from 'react'
 import { Route, Routes, useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 const Home = lazy(() => import("../Pages/Home"))
+const FashionHome = lazy(() => import("../Pages/FashionHome"))
+
 const Products = lazy(() => import("../Pages/Products"))
 const Login = lazy(() => import("../Pages/Login"))
 const Register = lazy(() => import("../Pages/Register"))
@@ -20,7 +22,7 @@ const Mainroutes = () => {
 
     return (
         <Routes>
-            <Route path='/' element={<Home />} />
+            <Route path='/' element={<FashionHome />} />
             <Route path='/products' element={<Products />} />
             <Route path='/login' element={<Login />} />
             <Route path='/register' element={<Register />} />

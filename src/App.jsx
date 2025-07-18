@@ -6,6 +6,10 @@ import Mainroutes from './routes/Mainroutes';
 import Nav from './components/Nav';
 import { asynccurrentuser } from './Store/action/Useraction';
 import { asyncloadproduct, asyncupdateproduct } from './Store/action/Productaction';
+import { useState } from 'react';
+// import EyeEffect from './Pages/EyeEffect';
+import EyeIntro from "./Pages/EyeIntro";
+import { div } from 'framer-motion/client';
 const App = () => {
   if (!localStorage.getItem("products")) {
     localStorage.setItem("products", JSON.stringify([{
@@ -173,12 +177,19 @@ const App = () => {
     dispatch(asyncupdateproduct())
 
   }, [])
+  const [showMain, setShowMain] = useState(true);
 
   return (
-    <div className='text-white font-thin pl-[50px] pr-[50px] min-h-screen bg-[#293241]' >
-      <Nav />
-      <Mainroutes />
-    </div>
+ <main className="min-h-screen flex items-center justify-center ">
+      {!showMain && <EyeIntro onComplete={() => {console.log("Animation done") ; setShowMain(true)} }/>}
+
+      {showMain && (
+        <div className="text-white font-thin min-w-[90%] bg-[#293241]">
+          <Nav />
+          <Mainroutes />
+        </div>
+      )}
+    </main>
   )
 }
 
