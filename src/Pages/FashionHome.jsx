@@ -1,85 +1,203 @@
 import React from "react";
 import ImageSlider from "./ImageSlider";
 import CurvedLoop from '../Libraries/CurvedLoop';
+import SplitText from '../Libraries/SplitText'
+import ScrollVelocity from '../Libraries/ScrollVelocity';
+import InfoGrid from "./InfoGrid";
+import BlurText from '../Libraries/BlurText';
+import SpecialSaleSection from "./SpecialSaleSection";
+import Footer from './Footer'
+import ScrollFloat from "../Libraries/ScrollFloat";
+
 export default function FashionHome() {
+  function renderedItem() {
+    let data = JSON.parse(localStorage.getItem("products")).slice(0, 3)
+    console.log(data);
+
+    return data
+  }
   return (
-        <>    
-      <div className="font-sans text-[#111]">
-      {/* Hero Section */}
-     <section className="relative h-[80vh] w-full overflow-hidden">
-  {/* Image Slider Behind */}
-  <ImageSlider />
+    <>
+      <div className="font-sans text-[#6D4C41] bg-[#F5F5F5]">
+        {/* Hero Section */}
 
-  {/* Text Overlay on Top */}
-  <div className="absolute inset-0 flex items-end justify-center">
-    <div className="bg-black/50 p-6 mb-5 rounded-xl text-center text-white max-w-xl">
-      <h1 className="text-4xl md:text-5xl font-bold">SPRING / SUMMER 2025</h1>
-      <CurvedLoop 
-  marqueeText="The ✦ SS25 ✦ Ready-to-Wear ✦ fashion ✦ show ✦ savings ✦ are ✦ now ✦ lives ✦"
-  speed={5}
-  curveAmount={400}
-  direction="right"
-  interactive={true}
-  className="custom-text-style"
-/>
-      <div className="space-x-4">
-        <button className="bg-white text-black px-6 py-2 rounded hover:bg-gray-200">
-          SHOP NOW
-        </button>
-      </div>
-    </div>
-  </div>
-</section>
+        <section className="relative w-full overflow-hidden">
+          <ImageSlider />
 
+          {/* Overlay Text and Button */}
+          <div className="hidden md:absolute md:inset-0 md:flex md:items-end md:justify-center">
 
-      {/* New Arrivals */}
-      <section className="px-4 md:px-16 py-10">
-        <h2 className="text-2xl font-bold mb-4">NEW ARRIVALS</h2>
-        <p className="text-sm text-gray-500 mb-6">Discover the latest drops in ready-to-wear, shoes and accessories.</p>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-          {[1, 2, 3, 4].map((_, idx) => (
-            <div key={idx} className="border rounded-lg overflow-hidden">
-              <div className="aspect-[3/4] bg-gray-200"></div>
-              <div className="p-2">
-                <p className="text-sm font-semibold">ITEM NAME - COLOR</p>
-                <p className="text-xs text-gray-500">$199.99</p>
-                <p className="text-xs text-yellow-500">★★★★★</p>
+            <div className="bg-[#6D4C41]/70 p-6 mb-5 rounded-xl text-center text-white max-w-xl w-[90%]">
+              <h1>
+                <SplitText
+                  text="SPRING / SUMMER 2025"
+                  className="text-4xl font-bold text-center"
+                  delay={100}
+                  duration={0.3}
+                  ease="power3.out"
+                  splitType="chars"
+                  from={{ opacity: 0, y: 40 }}
+                  to={{ opacity: 1, y: 0 }}
+                  threshold={0.1}
+                  rootMargin="-100px"
+                  textAlign="center"
+                />
+              </h1>
+              <CurvedLoop
+                marqueeText="The ✦ SS25 ✦ Ready-to-Wear ✦ fashion ✦ show ✦ savings ✦ are ✦ now ✦ live ✦"
+                speed={5}
+                curveAmount={450}
+                direction="right"
+                interactive={true}
+                className="custom-text-style"
+              />
+              <div className="space-x-4 mt-4">
+                <button className="bg-[#F5F5F5] text-[#6D4C41] px-6 py-2 rounded hover:bg-[#D7CCC8] transition font-semibold">
+                  SHOP NOW
+                </button>
               </div>
             </div>
-          ))}
-        </div>
-      </section>
-
-      {/* Promo Banners */}
-      <section className="px-4 md:px-16 py-12 bg-[#f7f7f7]">
-        <div className="text-center text-2xl font-extrabold mb-8">
-          <span className="mr-4">* FEEL AUTHENTIC *</span>
-          <span className="text-gray-400">FEEL TRENDY</span>
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div className="relative h-80 bg-cover bg-center" style={{ backgroundImage: "url('https://images.unsplash.com/photo-1593032465170-ae3b8b7ee3a4')" }}>
-            <div className="absolute bottom-0 p-4 bg-black/50 w-full text-white">
-              <h3 className="text-lg font-semibold mb-1">BUY NOW OR CRY LATER</h3>
-              <button className="bg-white text-black px-4 py-2 rounded">EXPLORE</button>
-            </div>
           </div>
-          <div className="relative h-80 bg-cover bg-center" style={{ backgroundImage: "url('https://images.unsplash.com/photo-1620912189864-2da88828d1e9')" }}>
-            <div className="absolute bottom-0 p-4 bg-black/50 w-full text-white">
-              <h3 className="text-lg font-semibold mb-1">BE FREE. BE BEAUTIFUL.</h3>
-              <button className="bg-white text-black px-4 py-2 rounded">EXPLORE</button>
-            </div>
-          </div>
-        </div>
-      </section>
+        </section>
 
-      {/* Footer Banner */}
-      <section className="relative h-[60vh] bg-cover bg-center flex items-end justify-center" style={{ backgroundImage: "url('https://images.unsplash.com/photo-1608662484761-2e2e9f1279d0')" }}>
-        <div className="bg-black/50 w-full text-center py-6 text-white text-lg font-semibold">
-          READY TO WEAR · COUTURE · SUMMER EDIT · ICONIC
-        </div>
-      </section>
-    </div>
+        {/* New Arrivals */}
+        <section className="px-4 md:px-16 py-10 bg-[#D7CCC8]">
+          <div className="flex justify-between items-center mb-4">
+            <h2 className="text-2xl font-bold"> <SplitText
+              text="NEW ARRIVALS"
+              className="text-3xl font-bold text-center"
+              delay={100}
+              duration={0.3}
+              ease="power3.out"
+              splitType="chars"
+              from={{ opacity: 0, y: 40 }}
+              to={{ opacity: 1, y: 0 }}
+              threshold={0.1}
+              rootMargin="-100px"
+              textAlign="center"
+            /></h2>
+            <button className="px-4 py-2 bg-[#6D4C41] text-white text-sm rounded hover:bg-[#8D6E63] transition">
+              See All
+            </button>
+          </div>
+          <p className="text-xl text-[#6D4C41] mb-6">
+            Discover the latest drops in ready-to-wear, shoes and accessories.
+          </p>
+
+          <div
+            id="Scroll"
+            className="flex overflow-x-auto space-x-4 pb-2 rounded-lg scrollbar-hide"
+            style={{
+              scrollbarWidth: "none", // Firefox
+              msOverflowStyle: "none", // IE & Edge
+            }}
+          >
+            {renderedItem().map((item, idx) => (
+              <div
+                key={idx}
+                className="min-w-[200px] h-[500px] md:min-w-[240px] lg:min-w-[280px] flex-shrink-0 border rounded-lg overflow-hidden bg-[#F5F5F5] shadow-md"
+              >
+                {/* Fixed Aspect Ratio Container */}
+                <div className="aspect-[3/4] h-[80%] bg-[#A1887F] overflow-hidden">
+                  <div
+                    className="flex overflow-x-auto scrollbar-hide h-full w-full space-x-2 snap-x snap-mandatory scroll-smooth"
+                    style={{
+                      scrollbarWidth: "none", // Firefox
+                      msOverflowStyle: "none", // IE & Edge
+                    }}
+                  >
+                    {item.image.map((imgUrl, imgIdx) => (
+                      <img
+                        key={imgIdx}
+                        src={imgUrl}
+                        alt=""
+                        className="h-full w-full object-cover flex-shrink-0 rounded snap-center transition-all duration-500 ease-in-out"
+                        style={{ minWidth: "100%" }}
+                      />
+                    ))}
+                  </div>
+                </div>
+
+
+
+                {/* Card Content */}
+                <div className="p-3">
+                  <p className="text-sm font-semibold text-[#6D4C41]">{item.title}</p>
+                  <p className="text-xs text-[#8D6E63]">{item.price}</p>
+                  <p className="text-xs text-yellow-700">★★★★★</p>
+                </div>
+              </div>
+            ))}
+          </div>
+
+
+        </section>
+
+        {/* Promo Banners */}
+        <section className="px-4 md:px-16 py-12 bg-[#A1887F]">
+          <div className="text-center text-2xl font-extrabold text-white mb-8">
+            <ScrollVelocity
+              texts={["FEEL AUTHENTIC ✦", "FEEL TRENDY ✦"]}
+              velocity={50}
+              className="text-[#F5F5F5]"
+            />
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+            {[
+              {
+                title: "MENS WEAR",
+                url: "https://external-preview.redd.it/systumm-clothing-new-stock-out-now-on-elvish-yadavs-website-v0-pQeYW78qcsFENoNEXlLkrmbqhe7mAB31zeI9VXcY_VU.jpg?auto=webp&s=093721d0f3bf67e373ffbfdd6f71c3fe09a764bd"
+              },
+              {
+                title: "WOMENS WEAR",
+                url: "https://i.pinimg.com/originals/8f/75/48/8f75489d8bd296f59d336dede3db367e.jpg"
+              },
+              {
+                title: "KIDS WEAR",
+                url: "https://i.pinimg.com/originals/b2/c7/9d/b2c79d7c4bb0ec277901d0bba3385321.jpg"
+              }
+            ].map((item, index) => (
+              <div key={index} className="relative h-120 overflow-hidden rounded-lg group">
+                <div
+                  className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110"
+                  style={{ backgroundImage: `url(${item.url})` }}
+                />
+                <div className="absolute bottom-0 p-4 bg-[#6D4C41]/70 w-full text-white">
+                  <h3 className="text-lg font-semibold">{item.title}</h3>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* Footer Banner */}
+        <section
+          className="relative h-[60vh] bg-cover bg-center flex items-end justify-center"
+          style={{ backgroundImage: "url('https://images.unsplash.com/photo-1585914924626-15adac1e6402?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')" }}
+        >
+          <div className="bg-[#6D4C41]/70 w-full text-center py-6 text-white text-lg font-semibold">
+
+            {/* <BlurText
+  text="READY TO WEAR · COUTURE · SUMMER EDIT · ICONIC"
+  className="text-3xl font-bold text-[#fff]"
+  delay={100}
+/> */}
+<BlurText
+        text="Spring Summer 2025 Collection Launching Now"
+        animateBy="words"
+        className="text-3xl md:text-5xl font-bold text-[#fff]"
+        direction="top"
+        delay={300}
+        stepDuration={2}
+      />
+  
+          </div>
+        </section>
+      </div>
+      <SpecialSaleSection/>
+      <InfoGrid />
+      <Footer/>
     </>
-
   );
 }

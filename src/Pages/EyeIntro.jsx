@@ -24,9 +24,9 @@ export default function EyeIntro({ onComplete }) {
 
   return (
     <div
-      className={`relative w-full h-screen bg-black overflow-hidden flex items-center justify-center transition-opacity duration-[3000ms] ease-in-out ${
-        reveal ? "opacity-0" : "opacity-100"
-      }`}
+      className={`relative w-full h-screen bg-black overflow-hidden flex items-center justify-center transition-opacity duration-[3000ms] ease-in-out 
+        ${reveal ? "opacity-0" : "opacity-100"}
+        `}
     >
       {/* 🔷 Border Lines */}
       <div

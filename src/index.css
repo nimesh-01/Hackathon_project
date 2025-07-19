@@ -30,3 +30,7 @@
     .delete-button:hover{
     box-shadow: 0px 0px 12px rgb(141, 33, 33) ;
   }
+  #scroll:-webkit-scrollbar{
+    display: none;
+  }
+  

@@ -12,138 +12,606 @@ import EyeIntro from "./Pages/EyeIntro";
 import { div } from 'framer-motion/client';
 const App = () => {
   if (!localStorage.getItem("products")) {
-    localStorage.setItem("products", JSON.stringify([{
-      "id": "2",
-      "title": "Mens Casual Premium Slim Fit T-Shirts ",
-      "price": "4652",
-      "description": "Slim-fitting style, contrast raglan long sleeve, three-button henley placket, light weight & soft fabric for breathable and comfortable wearing. And Solid stitched shirts with round neck made for durability and a great fit for casual fashion wear and diehard baseball fans. The Henley style round neckline includes a three-button placket.",
-      "category": "electronics",
-      "image": "https://fakestoreapi.com/img/71-3HjGNDUL._AC_SY879._SX._UX._SY._UY_.jpg",
-      "rating": {
-        "rate": 4.1,
-        "count": 259
+    localStorage.setItem("products", JSON.stringify([
+      {
+        "id": "1",
+        "title": "Mens Hooded Sweatshirt",
+        "type": "mens",
+        "category": "top",
+        "price": "4166",
+        "description": "Trendy design suitable for all seasons. Lightweight and easy to maintain.",
+        "image": ["./src/assets/Mens Wear/Hoddie/img1.webp", "./src/assets/Mens Wear/Hoddie/img2.webp", "./src/assets/Mens Wear/Hoddie/Sweatshirt2.webp"],
+        "rating": {
+          "rate": 3.6,
+          "count": 80
+        }
+      },
+      {
+        "id": "2",
+        "title": "Mens Slim Fit Trousers",
+        "type": "mens",
+        "category": "bottom",
+        "price": "2157",
+        "description": "Soft fabric for breathable comfort. Durable stitching and perfect fit.",
+        "image": ["./src/assets/Mens Wear/Trouser1/img1.webp", "./src/assets/Mens Wear/Trouser1/img2.webp", "./src/assets/Mens Wear/Trouser1/img3.webp"],
+        "rating": {
+          "rate": 3.9,
+          "count": 136
+        }
+      },
+      {
+        "id": "4",
+        "title": "Kids Polo Shirt",
+        "type": "kids",
+        "category": "top",
+        "price": "3422",
+        "description": "Made from eco-friendly materials. Perfect for gifting as well.",
+        "image": ["./src/assets/Kids Wear/Polo t-shirt/img1.webp", "./src/assets/Kids Wear/Polo t-shirt/img2.webp"],
+        "rating": {
+          "rate": 4.8,
+          "count": 150
+        }
+      },
+      {
+        "id": "5",
+        "title": "Kids Tank Top",
+        "type": "kids",
+        "category": "top",
+        "price": "3157",
+        "description": "Trendy design suitable for all seasons. Lightweight and easy to maintain.",
+        "image": "https://dummyimage.com/300x400/000/fff&text=Tank+Top",
+        "rating": {
+          "rate": 4.4,
+          "count": 255
+        }
+      },
+      {
+        "id": "7",
+        "title": "Kids Sweater",
+        "type": "kids",
+        "category": "top",
+        "price": "1529",
+        "description": "Soft fabric for breathable comfort. Durable stitching and perfect fit.",
+        "image": "https://dummyimage.com/300x400/000/fff&text=Sweater",
+        "rating": {
+          "rate": 3.7,
+          "count": 395
+        }
+      },
+      {
+        "id": "8",
+        "title": "Kids Hoodie",
+        "type": "kids",
+        "category": "top",
+        "price": "724",
+        "description": "Ideal for casual wear with excellent quality and finish.",
+        "image": "https://dummyimage.com/300x400/000/fff&text=Hoodie",
+        "rating": {
+          "rate": 3.9,
+          "count": 219
+        }
+      },
+      {
+        "id": "9",
+        "title": "Womens High-Waisted Jeans",
+        "type": "womens",
+        "category": "bottom",
+        "price": "426",
+        "description": "Ideal for casual wear with excellent quality and finish.",
+        "image": "https://dummyimage.com/300x400/000/fff&text=High-Waisted+Jeans",
+        "rating": {
+          "rate": 4.3,
+          "count": 191
+        }
+      },
+      {
+        "id": "10",
+        "title": "Womens Leggings",
+        "type": "womens",
+        "category": "bottom",
+        "price": "3316",
+        "description": "Ideal for casual wear with excellent quality and finish.",
+        "image": "https://dummyimage.com/300x400/000/fff&text=Leggings",
+        "rating": {
+          "rate": 4.2,
+          "count": 296
+        }
+      },
+      {
+        "id": "13",
+        "title": "Kids Cartoon T-Shirt",
+        "type": "kids",
+        "category": "top",
+        "price": "565",
+        "description": "Soft fabric for breathable comfort. Durable stitching and perfect fit.",
+        "image": "https://dummyimage.com/300x400/000/fff&text=Cartoon+T-Shirt",
+        "rating": {
+          "rate": 4.7,
+          "count": 437
+        }
+      },
+      {
+        "id": "14",
+        "title": "Womens Mini Skirt",
+        "type": "womens",
+        "category": "bottom",
+        "price": "4863",
+        "description": "Soft fabric for breathable comfort. Durable stitching and perfect fit.",
+        "image": "https://dummyimage.com/300x400/000/fff&text=Mini+Skirt",
+        "rating": {
+          "rate": 4.4,
+          "count": 194
+        }
+      },
+      {
+        "id": "15",
+        "title": "Mens Hooded Sweatshirt",
+        "type": "mens",
+        "category": "top",
+        "price": "3350",
+        "description": "Ideal for casual wear with excellent quality and finish.",
+        "image": ["./src/assets/Mens Wear/Sweatshirt1/Sweatshirt.webp", "./src/assets/Mens Wear/Sweatshirt1/Sweatshirt1.webp", "./src/assets/Mens Wear/Sweatshirt1/Sweatshirt2.webp"],
+        "rating": {
+          "rate": 3.5,
+          "count": 217
+        }
+      },
+      {
+        "id": "16",
+        "title": "Womens Off-Shoulder Top",
+        "type": "womens",
+        "category": "top",
+        "price": "2065",
+        "description": "Classic look with modern appeal. Great for everyday use.",
+        "image": "https://dummyimage.com/300x400/000/fff&text=Off-Shoulder+Top",
+        "rating": {
+          "rate": 4.0,
+          "count": 226
+        }
+      },
+      {
+        "id": "17",
+        "title": "Kids Shorts",
+        "type": "kids",
+        "category": "bottom",
+        "price": "1561",
+        "description": "Classic look with modern appeal. Great for everyday use.",
+        "image": "https://dummyimage.com/300x400/000/fff&text=Shorts",
+        "rating": {
+          "rate": 3.6,
+          "count": 497
+        }
+      },
+      {
+        "id": "18",
+        "title": "Mens Snapback Cap",
+        "type": "mens",
+        "category": "hat",
+        "price": "3934",
+        "description": "Made from eco-friendly materials. Perfect for gifting as well.",
+        "image": "https://dummyimage.com/300x400/000/fff&text=Snapback+Cap",
+        "rating": {
+          "rate": 5.0,
+          "count": 457
+        }
+      },
+      {
+        "id": "19",
+        "title": "Womens Leggings",
+        "type": "womens",
+        "category": "bottom",
+        "price": "2146",
+        "description": "Soft fabric for breathable comfort. Durable stitching and perfect fit.",
+        "image": "https://dummyimage.com/300x400/000/fff&text=Leggings",
+        "rating": {
+          "rate": 4.8,
+          "count": 373
+        }
+      },
+      {
+        "id": "20",
+        "title": "Womens Palazzo Pants",
+        "type": "womens",
+        "category": "bottom",
+        "price": "3693",
+        "description": "Ideal for casual wear with excellent quality and finish.",
+        "image": "https://dummyimage.com/300x400/000/fff&text=Palazzo+Pants",
+        "rating": {
+          "rate": 4.2,
+          "count": 474
+        }
+      },
+      {
+        "id": "21",
+        "title": "Mens Baseball Cap",
+        "type": "mens",
+        "category": "hat",
+        "price": "3717",
+        "description": "Ideal for casual wear with excellent quality and finish.",
+        "image": "https://dummyimage.com/300x400/000/fff&text=Baseball+Cap",
+        "rating": {
+          "rate": 3.6,
+          "count": 282
+        }
+      },
+      {
+        "id": "22",
+        "title": "Womens Pleated Skirt",
+        "type": "womens",
+        "category": "bottom",
+        "price": "2166",
+        "description": "Ideal for casual wear with excellent quality and finish.",
+        "image": "https://dummyimage.com/300x400/000/fff&text=Pleated+Skirt",
+        "rating": {
+          "rate": 3.9,
+          "count": 228
+        }
+      },
+      {
+        "id": "23",
+        "title": "Mens V-Neck Tee",
+        "type": "mens",
+        "category": "top",
+        "price": "385",
+        "description": "Classic look with modern appeal. Great for everyday use.",
+        "image": "https://dummyimage.com/300x400/000/fff&text=V-Neck+Tee",
+        "rating": {
+          "rate": 4.1,
+          "count": 319
+        }
+      },
+      {
+        "id": "24",
+        "title": "Womens Crop Top",
+        "type": "womens",
+        "category": "top",
+        "price": "3662",
+        "description": "Soft fabric for breathable comfort. Durable stitching and perfect fit.",
+        "image": "https://dummyimage.com/300x400/000/fff&text=Crop+Top",
+        "rating": {
+          "rate": 4.6,
+          "count": 71
+        }
+      },
+      {
+        "id": "25",
+        "title": "Mens Jogger Pants",
+        "type": "mens",
+        "category": "bottom",
+        "price": "467",
+        "description": "Classic look with modern appeal. Great for everyday use.",
+        "image": "https://dummyimage.com/300x400/000/fff&text=Jogger+Pants",
+        "rating": {
+          "rate": 4.3,
+          "count": 240
+        }
+      },
+      {
+        "id": "26",
+        "title": "Mens Hooded Sweatshirt",
+        "type": "mens",
+        "category": "top",
+        "price": "3510",
+        "description": "Classic look with modern appeal. Great for everyday use.",
+        "image": "https://dummyimage.com/300x400/000/fff&text=Hooded+Sweatshirt",
+        "rating": {
+          "rate": 4.2,
+          "count": 143
+        }
+      },
+      {
+        "id": "27",
+        "title": "Womens Silk Blouse",
+        "type": "womens",
+        "category": "top",
+        "price": "3580",
+        "description": "Soft fabric for breathable comfort. Durable stitching and perfect fit.",
+        "image": "https://dummyimage.com/300x400/000/fff&text=Silk+Blouse",
+        "rating": {
+          "rate": 3.7,
+          "count": 237
+        }
+      },
+      {
+        "id": "28",
+        "title": "Kids Hoodie",
+        "type": "kids",
+        "category": "top",
+        "price": "4585",
+        "description": "Made from eco-friendly materials. Perfect for gifting as well.",
+        "image": "https://dummyimage.com/300x400/000/fff&text=Hoodie",
+        "rating": {
+          "rate": 3.7,
+          "count": 118
+        }
+      },
+      {
+        "id": "29",
+        "title": "Womens Off-Shoulder Top",
+        "type": "womens",
+        "category": "top",
+        "price": "3076",
+        "description": "Soft fabric for breathable comfort. Durable stitching and perfect fit.",
+        "image": "https://dummyimage.com/300x400/000/fff&text=Off-Shoulder+Top",
+        "rating": {
+          "rate": 4.5,
+          "count": 452
+        }
+      },
+      {
+        "id": "30",
+        "title": "Kids Cartoon T-Shirt",
+        "type": "kids",
+        "category": "top",
+        "price": "4693",
+        "description": "Trendy design suitable for all seasons. Lightweight and easy to maintain.",
+        "image": "https://dummyimage.com/300x400/000/fff&text=Cartoon+T-Shirt",
+        "rating": {
+          "rate": 4.7,
+          "count": 407
+        }
+      },
+      {
+        "id": "31",
+        "title": "Womens Leggings",
+        "type": "womens",
+        "category": "bottom",
+        "price": "3905",
+        "description": "Ideal for casual wear with excellent quality and finish.",
+        "image": "https://dummyimage.com/300x400/000/fff&text=Leggings",
+        "rating": {
+          "rate": 3.6,
+          "count": 147
+        }
+      },
+      {
+        "id": "32",
+        "title": "Womens Palazzo Pants",
+        "type": "womens",
+        "category": "bottom",
+        "price": "3447",
+        "description": "Trendy design suitable for all seasons. Lightweight and easy to maintain.",
+        "image": "https://dummyimage.com/300x400/000/fff&text=Palazzo+Pants",
+        "rating": {
+          "rate": 3.9,
+          "count": 368
+        }
+      },
+      {
+        "id": "33",
+        "title": "Womens Palazzo Pants",
+        "type": "womens",
+        "category": "bottom",
+        "price": "2433",
+        "description": "Classic look with modern appeal. Great for everyday use.",
+        "image": "https://dummyimage.com/300x400/000/fff&text=Palazzo+Pants",
+        "rating": {
+          "rate": 3.5,
+          "count": 278
+        }
+      },
+      {
+        "id": "34",
+        "title": "Mens Cargo Shorts",
+        "type": "mens",
+        "category": "bottom",
+        "price": "3109",
+        "description": "Made from eco-friendly materials. Perfect for gifting as well.",
+        "image": "https://dummyimage.com/300x400/000/fff&text=Cargo+Shorts",
+        "rating": {
+          "rate": 4.9,
+          "count": 244
+        }
+      },
+      {
+        "id": "35",
+        "title": "Womens Tank Top",
+        "type": "womens",
+        "category": "top",
+        "price": "1901",
+        "description": "Made from eco-friendly materials. Perfect for gifting as well.",
+        "image": "https://dummyimage.com/300x400/000/fff&text=Tank+Top",
+        "rating": {
+          "rate": 4.4,
+          "count": 247
+        }
+      },
+      {
+        "id": "36",
+        "title": "Kids Tank Top",
+        "type": "kids",
+        "category": "top",
+        "price": "680",
+        "description": "Trendy design suitable for all seasons. Lightweight and easy to maintain.",
+        "image": "https://dummyimage.com/300x400/000/fff&text=Tank+Top",
+        "rating": {
+          "rate": 4.8,
+          "count": 295
+        }
+      },
+      {
+        "id": "37",
+        "title": "Womens Crop Top",
+        "type": "womens",
+        "category": "top",
+        "price": "3909",
+        "description": "Ideal for casual wear with excellent quality and finish.",
+        "image": "https://dummyimage.com/300x400/000/fff&text=Crop+Top",
+        "rating": {
+          "rate": 4.4,
+          "count": 176
+        }
+      },
+      {
+        "id": "38",
+        "title": "Womens Palazzo Pants",
+        "type": "womens",
+        "category": "bottom",
+        "price": "990",
+        "description": "Soft fabric for breathable comfort. Durable stitching and perfect fit.",
+        "image": "https://dummyimage.com/300x400/000/fff&text=Palazzo+Pants",
+        "rating": {
+          "rate": 3.8,
+          "count": 455
+        }
+      },
+      {
+        "id": "39",
+        "title": "Mens Slim Fit Trousers",
+        "type": "mens",
+        "category": "bottom",
+        "price": "4831",
+        "description": "Trendy design suitable for all seasons. Lightweight and easy to maintain.",
+        "image": "https://dummyimage.com/300x400/000/fff&text=Slim+Fit+Trousers",
+        "rating": {
+          "rate": 4.7,
+          "count": 464
+        }
+      },
+      {
+        "id": "40",
+        "title": "Kids Overalls",
+        "type": "kids",
+        "category": "bottom",
+        "price": "4965",
+        "description": "Classic look with modern appeal. Great for everyday use.",
+        "image": "https://dummyimage.com/300x400/000/fff&text=Overalls",
+        "rating": {
+          "rate": 3.8,
+          "count": 449
+        }
+      },
+      {
+        "id": "41",
+        "title": "Kids Hoodie",
+        "type": "kids",
+        "category": "top",
+        "price": "1217",
+        "description": "Soft fabric for breathable comfort. Durable stitching and perfect fit.",
+        "image": "https://dummyimage.com/300x400/000/fff&text=Hoodie",
+        "rating": {
+          "rate": 4.9,
+          "count": 182
+        }
+      },
+      {
+        "id": "42",
+        "title": "Womens Peplum Top",
+        "type": "womens",
+        "category": "top",
+        "price": "522",
+        "description": "Made from eco-friendly materials. Perfect for gifting as well.",
+        "image": "https://dummyimage.com/300x400/000/fff&text=Peplum+Top",
+        "rating": {
+          "rate": 4.8,
+          "count": 436
+        }
+      },
+      {
+        "id": "43",
+        "title": "Womens Palazzo Pants",
+        "type": "womens",
+        "category": "bottom",
+        "price": "2154",
+        "description": "Soft fabric for breathable comfort. Durable stitching and perfect fit.",
+        "image": "https://dummyimage.com/300x400/000/fff&text=Palazzo+Pants",
+        "rating": {
+          "rate": 4.9,
+          "count": 414
+        }
+      },
+      {
+        "id": "44",
+        "title": "Womens Mini Skirt",
+        "type": "womens",
+        "category": "bottom",
+        "price": "2955",
+        "description": "Trendy design suitable for all seasons. Lightweight and easy to maintain.",
+        "image": "https://dummyimage.com/300x400/000/fff&text=Mini+Skirt",
+        "rating": {
+          "rate": 4.9,
+          "count": 386
+        }
+      },
+      {
+        "id": "45",
+        "title": "Womens Palazzo Pants",
+        "type": "womens",
+        "category": "bottom",
+        "price": "1979",
+        "description": "Trendy design suitable for all seasons. Lightweight and easy to maintain.",
+        "image": "https://dummyimage.com/300x400/000/fff&text=Palazzo+Pants",
+        "rating": {
+          "rate": 4.8,
+          "count": 205
+        }
+      },
+      {
+        "id": "46",
+        "title": "Womens Leggings",
+        "type": "womens",
+        "category": "bottom",
+        "price": "2601",
+        "description": "Classic look with modern appeal. Great for everyday use.",
+        "image": "https://dummyimage.com/300x400/000/fff&text=Leggings",
+        "rating": {
+          "rate": 4.4,
+          "count": 366
+        }
+      },
+      {
+        "id": "47",
+        "title": "Mens V-Neck Tee",
+        "type": "mens",
+        "category": "top",
+        "price": "1004",
+        "description": "Ideal for casual wear with excellent quality and finish.",
+        "image": "https://dummyimage.com/300x400/000/fff&text=V-Neck+Tee",
+        "rating": {
+          "rate": 3.9,
+          "count": 251
+        }
+      },
+      {
+        "id": "48",
+        "title": "Mens Fedora Hat",
+        "type": "mens",
+        "category": "hat",
+        "price": "570",
+        "description": "Soft fabric for breathable comfort. Durable stitching and perfect fit.",
+        "image": "https://dummyimage.com/300x400/000/fff&text=Fedora+Hat",
+        "rating": {
+          "rate": 4.5,
+          "count": 136
+        }
+      },
+      {
+        "id": "49",
+        "title": "Mens Bucket Hat",
+        "type": "mens",
+        "category": "hat",
+        "price": "3397",
+        "description": "Classic look with modern appeal. Great for everyday use.",
+        "image": "https://dummyimage.com/300x400/000/fff&text=Bucket+Hat",
+        "rating": {
+          "rate": 4.2,
+          "count": 129
+        }
+      },
+      {
+        "id": "50",
+        "title": "Mens Hooded Sweatshirt",
+        "type": "mens",
+        "category": "top",
+        "price": "4429",
+        "description": "Trendy design suitable for all seasons. Lightweight and easy to maintain.",
+        "image": "https://dummyimage.com/300x400/000/fff&text=Hooded+Sweatshirt",
+        "rating": {
+          "rate": 3.8,
+          "count": 129
+        }
       }
-    },
-    {
-      "id": "9",
-      "title": "WD 2TB Elements Portable External Hard Drive - USB 3.0 ",
-      "price": 64,
-      "description": "USB 3.0 and USB 2.0 Compatibility Fast data transfers Improve PC Performance High Capacity; Compatibility Formatted NTFS for Windows 10, Windows 8.1, Windows 7; Reformatting may be required for other operating systems; Compatibility may vary depending on user’s hardware configuration and operating system",
-      "category": "electronics",
-      "image": "https://fakestoreapi.com/img/61IBBVJvSDL._AC_SY879_.jpg",
-      "rating": {
-        "rate": 3.3,
-        "count": 203
-      }
-    },
-    {
-      "id": "11",
-      "title": "Silicon Power 256GB SSD 3D NAND A55 SLC Cache Performance Boost SATA III 2.5",
-      "price": 109,
-      "description": "3D NAND flash are applied to deliver high transfer speeds Remarkable transfer speeds that enable faster bootup and improved overall system performance. The advanced SLC Cache Technology allows performance boost and longer lifespan 7mm slim design suitable for Ultrabooks and Ultra-slim notebooks. Supports TRIM command, Garbage Collection technology, RAID, and ECC (Error Checking & Correction) to provide the optimized performance and enhanced reliability.",
-      "category": "electronics",
-      "image": "https://fakestoreapi.com/img/71kWymZ+c+L._AC_SX679_.jpg",
-      "rating": {
-        "rate": 4.8,
-        "count": 319
-      }
-    },
-    {
-      "id": "12",
-      "title": "WD 4TB Gaming Drive Works with Playstation 4 Portable External Hard Drive",
-      "price": 114,
-      "description": "Expand your PS4 gaming experience, Play anywhere Fast and easy, setup Sleek design with high capacity, 3-year manufacturer's limited warranty",
-      "category": "electronics",
-      "image": "https://fakestoreapi.com/img/61mtL65D4cL._AC_SX679_.jpg",
-      "rating": {
-        "rate": 4.8,
-        "count": 400
-      }
-    },
-    {
-      "id": "13",
-      "title": "Acer SB220Q bi 21.5 inches Full HD (1920 x 1080) IPS Ultra-Thin",
-      "price": 599,
-      "description": "21. 5 inches Full HD (1920 x 1080) widescreen IPS display And Radeon free Sync technology. No compatibility for VESA Mount Refresh Rate: 75Hz - Using HDMI port Zero-frame design | ultra-thin | 4ms response time | IPS panel Aspect ratio - 16: 9. Color Supported - 16. 7 million colors. Brightness - 250 nit Tilt angle -5 degree to 15 degree. Horizontal viewing angle-178 degree. Vertical viewing angle-178 degree 75 hertz",
-      "category": "electronics",
-      "image": "https://fakestoreapi.com/img/81QpkIctqPL._AC_SX679_.jpg",
-      "rating": {
-        "rate": 2.9,
-        "count": 250
-      }
-    },
-    {
-      "id": "14",
-      "title": "Samsung 49-Inch CHG90 144Hz Curved Gaming Monitor (LC49HG90DMNXZA) – Super Ultrawide Screen QLED ",
-      "price": 999.99,
-      "description": "49 INCH SUPER ULTRAWIDE 32:9 CURVED GAMING MONITOR with dual 27 inch screen side by side QUANTUM DOT (QLED) TECHNOLOGY, HDR support and factory calibration provides stunningly realistic and accurate color and contrast 144HZ HIGH REFRESH RATE and 1ms ultra fast response time work to eliminate motion blur, ghosting, and reduce input lag",
-      "category": "electronics",
-      "image": "https://fakestoreapi.com/img/81Zt42ioCgL._AC_SX679_.jpg",
-      "rating": {
-        "rate": 2.2,
-        "count": 140
-      }
-    },
-    {
-      "id": "15",
-      "title": "BIYLACLESEN Women's 3-in-1 Snowboard Jacket Winter Coats",
-      "price": 56.99,
-      "description": "Note:The Jackets is US standard size, Please choose size as your usual wear Material: 100% Polyester; Detachable Liner Fabric: Warm Fleece. Detachable Functional Liner: Skin Friendly, Lightweigt and Warm.Stand Collar Liner jacket, keep you warm in cold weather. Zippered Pockets: 2 Zippered Hand Pockets, 2 Zippered Pockets on Chest (enough to keep cards or keys)and 1 Hidden Pocket Inside.Zippered Hand Pockets and Hidden Pocket keep your things secure. Humanized Design: Adjustable and Detachable Hood and Adjustable cuff to prevent the wind and water,for a comfortable fit. 3 in 1 Detachable Design provide more convenience, you can separate the coat and inner as needed, or wear it together. It is suitable for different season and help you adapt to different climates",
-      "category": "women's clothing",
-      "image": "https://fakestoreapi.com/img/51Y5NI-I5jL._AC_UX679_.jpg",
-      "rating": {
-        "rate": 2.6,
-        "count": 235
-      }
-    },
-    {
-      "id": "17",
-      "title": "Rain Jacket Women Windbreaker Striped Climbing Raincoats",
-      "price": 39.99,
-      "description": "Lightweight perfet for trip or casual wear---Long sleeve with hooded, adjustable drawstring waist design. Button and zipper front closure raincoat, fully stripes Lined and The Raincoat has 2 side pockets are a good size to hold all kinds of things, it covers the hips, and the hood is generous but doesn't overdo it.Attached Cotton Lined Hood with Adjustable Drawstrings give it a real styled look.",
-      "category": "women's clothing",
-      "image": "https://fakestoreapi.com/img/71HblAHs5xL._AC_UY879_-2.jpg",
-      "rating": {
-        "rate": 3.8,
-        "count": 679
-      }
-    },
-    {
-      "id": "18",
-      "title": "MBJ Women's Solid Short Sleeve Boat Neck V ",
-      "price": 9.85,
-      "description": "95% RAYON 5% SPANDEX, Made in USA or Imported, Do Not Bleach, Lightweight fabric with great stretch for comfort, Ribbed on sleeves and neckline / Double stitching on bottom hem",
-      "category": "women's clothing",
-      "image": "https://fakestoreapi.com/img/71z3kpMAYsL._AC_UY879_.jpg",
-      "rating": {
-        "rate": 4.7,
-        "count": 130
-      }
-    },
-    {
-      "id": "19",
-      "title": "Opna Women's Short Sleeve Moisture",
-      "price": 7.95,
-      "description": "100% Polyester, Machine wash, 100% cationic polyester interlock, Machine Wash & Pre Shrunk for a Great Fit, Lightweight, roomy and highly breathable with moisture wicking fabric which helps to keep moisture away, Soft Lightweight Fabric with comfortable V-neck collar and a slimmer fit, delivers a sleek, more feminine silhouette and Added Comfort",
-      "category": "women's clothing",
-      "image": "https://fakestoreapi.com/img/51eg55uWmdL._AC_UX679_.jpg",
-      "rating": {
-        "rate": 4.5,
-        "count": 146
-      }
-    },
-    {
-      "id": "20",
-      "title": "DANVOUY Womens T Shirt Casual Cotton Short",
-      "price": 12.99,
-      "description": "95%Cotton,5%Spandex, Features: Casual, Short Sleeve, Letter Print,V-Neck,Fashion Tees, The fabric is soft and has some stretch., Occasion: Casual/Office/Beach/School/Home/Street. Season: Spring,Summer,Autumn,Winter.",
-      "category": "women's clothing",
-      "image": "https://fakestoreapi.com/img/61pHAEJ4NML._AC_UX679_.jpg",
-      "rating": {
-        "rate": 3.6,
-        "count": 145
-      }
-    }])); // or default product array
+    ])); // or default product array
   }
   if (!localStorage.getItem("users")) {
     localStorage.setItem("users", JSON.stringify([{
@@ -180,8 +648,8 @@ const App = () => {
   const [showMain, setShowMain] = useState(true);
 
   return (
- <main className="min-h-screen flex items-center justify-center ">
-      {!showMain && <EyeIntro onComplete={() => {console.log("Animation done") ; setShowMain(true)} }/>}
+    <main className="min-h-screen flex items-center justify-center ">
+      {!showMain && <EyeIntro onComplete={() => { console.log("Animation done"); setShowMain(true) }} />}
 
       {showMain && (
         <div className="text-white font-thin min-w-[90%] bg-[#293241]">
