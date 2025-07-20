@@ -1,0 +1,46 @@
+.pc-card-wrapper {
+  perspective: 500px;
+  transform: translate3d(0, 0, 0.1px);
+  position: relative;
+  touch-action: none;
+}
+
+.pc-card {
+  height: 80svh;
+  max-height: 570px;
+  aspect-ratio: 0.718;
+  border-radius: 30px;
+  display: grid;
+  position: relative;
+  box-shadow: rgba(0, 0, 0, 0.3) 0 10px 30px;
+  transition: transform 1s ease;
+  background: #1a1a1a;
+  overflow: hidden;
+}
+
+.pc-card:hover,
+.pc-card.active {
+  transition: none;
+  transform: rotateX(var(--rotate-y)) rotateY(var(--rotate-x));
+}
+
+.pc-card * {
+  display: grid;
+  grid-area: 1/-1;
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+.pc-avatar-content {
+  mix-blend-mode: normal;
+  overflow: hidden;
+}
+
+.pc-avatar-content .avatar {
+  width: 100%;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%) scale(1);
+  bottom: 0;
+  opacity: 1;
+}

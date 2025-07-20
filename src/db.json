@@ -1,16 +1,3 @@
-import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import axios from "./api/Axiosconfig";
-import Mainroutes from './routes/Mainroutes';
-import Nav from './components/Nav';
-import { asynccurrentuser } from './Store/action/Useraction';
-import { asyncloadproduct, asyncupdateproduct } from './Store/action/Productaction';
-import ScrollToggleButton from "./Pages/ScrollToggleButton";
-import EyeIntro from "./Pages/EyeIntro";
-import Login from './Pages/Login';
-import Register from './Pages/Register';
-
-const App = () => {
   if (!localStorage.getItem("products")) {
     localStorage.setItem("products", JSON.stringify([
       {
@@ -59,7 +46,7 @@ const App = () => {
         "category": "top",
         "price": "3157",
         "description": "Trendy design suitable for all seasons. Lightweight and easy to maintain.",
-        "image": ["./src/assets/Kids Wear/Kids Tank Top/img1.webp", "/src/assets/Kids Wear/Kids Tank Top/img2.webp"],
+        "image": "https://dummyimage.com/300x400/000/fff&text=Tank+Top",
         "rating": {
           "rate": 4.4,
           "count": 255
@@ -72,7 +59,7 @@ const App = () => {
         "category": "top",
         "price": "1529",
         "description": "Soft fabric for breathable comfort. Durable stitching and perfect fit.",
-        "image": ["./src/assets/ids Wear/Sweater/img1.webp"],
+        "image": "https://dummyimage.com/300x400/000/fff&text=Sweater",
         "rating": {
           "rate": 3.7,
           "count": 395
@@ -85,7 +72,7 @@ const App = () => {
         "category": "top",
         "price": "724",
         "description": "Ideal for casual wear with excellent quality and finish.",
-        "image": ["./src/assets/Kids Wear/Hoddie/img1.webp", "./src/assets/Kids Wear/Hoddie/img2.webp", "./src/assets/Kids Wear/Hoddie/img3.webp"],
+        "image": "https://dummyimage.com/300x400/000/fff&text=Hoodie",
         "rating": {
           "rate": 3.9,
           "count": 219
@@ -98,7 +85,7 @@ const App = () => {
         "category": "bottom",
         "price": "426",
         "description": "Ideal for casual wear with excellent quality and finish.",
-        "image": ["./src/assets/Womens wear/Jeans1/img1.webp", "./src/assets/Womens wear/Jeans1/img2.webp", "./src/assets/Womens wear/Jeans1/img3.webp"],
+        "image": "https://dummyimage.com/300x400/000/fff&text=High-Waisted+Jeans",
         "rating": {
           "rate": 4.3,
           "count": 191
@@ -111,7 +98,7 @@ const App = () => {
         "category": "bottom",
         "price": "3316",
         "description": "Ideal for casual wear with excellent quality and finish.",
-        "image": ["./src/assets/Womens wear/Leggings/img1.webp", "./src/assets/Womens wear/Leggings/img2.webp", "./src/assets/Womens wear/Leggings/img3.webp"],
+        "image": "https://dummyimage.com/300x400/000/fff&text=Leggings",
         "rating": {
           "rate": 4.2,
           "count": 296
@@ -124,7 +111,7 @@ const App = () => {
         "category": "top",
         "price": "565",
         "description": "Soft fabric for breathable comfort. Durable stitching and perfect fit.",
-        "image": ["./src/assets/Kids Wear/Cartoon-tshirt/img1.webp", "./src/assets/Kids Wear/Cartoon-tshirt/img2.webp"],
+        "image": "https://dummyimage.com/300x400/000/fff&text=Cartoon+T-Shirt",
         "rating": {
           "rate": 4.7,
           "count": 437
@@ -137,7 +124,7 @@ const App = () => {
         "category": "bottom",
         "price": "4863",
         "description": "Soft fabric for breathable comfort. Durable stitching and perfect fit.",
-        "image": ["./src/assets/Womens wear/Skirt1/img1.webp", "./src/assets/Womens wear/Skirt1/img1.webp"],
+        "image": "https://dummyimage.com/300x400/000/fff&text=Mini+Skirt",
         "rating": {
           "rate": 4.4,
           "count": 194
@@ -163,7 +150,7 @@ const App = () => {
         "category": "top",
         "price": "2065",
         "description": "Classic look with modern appeal. Great for everyday use.",
-        "image": ["./src/assets/Womens wear/Top1/img1.webp", "./src/assets/Womens wear/Top1/img2.webp"],
+        "image": "https://dummyimage.com/300x400/000/fff&text=Off-Shoulder+Top",
         "rating": {
           "rate": 4.0,
           "count": 226
@@ -176,7 +163,7 @@ const App = () => {
         "category": "bottom",
         "price": "1561",
         "description": "Classic look with modern appeal. Great for everyday use.",
-        "image": ["./src/assets/Kids Wear/Short/img.webp"],
+        "image": "https://dummyimage.com/300x400/000/fff&text=Shorts",
         "rating": {
           "rate": 3.6,
           "count": 497
@@ -189,7 +176,7 @@ const App = () => {
         "category": "hat",
         "price": "3934",
         "description": "Made from eco-friendly materials. Perfect for gifting as well.",
-        "image": ["./src/assets/Caps/Cap2/img.webp", "./src/assets/Caps/Cap2/img2.webp"],
+        "image": "https://dummyimage.com/300x400/000/fff&text=Snapback+Cap",
         "rating": {
           "rate": 5.0,
           "count": 457
@@ -202,7 +189,7 @@ const App = () => {
         "category": "bottom",
         "price": "2146",
         "description": "Soft fabric for breathable comfort. Durable stitching and perfect fit.",
-        "image": ["./src/assets/Womens wear/Leggings/img1.webp", "./src/assets/Womens wear/Leggings/img2.webp", "./src/assets/Womens wear/Leggings/img3.webp"],
+        "image": "https://dummyimage.com/300x400/000/fff&text=Leggings",
         "rating": {
           "rate": 4.8,
           "count": 373
@@ -215,7 +202,7 @@ const App = () => {
         "category": "bottom",
         "price": "3693",
         "description": "Ideal for casual wear with excellent quality and finish.",
-        "image": ["./src/assets/Womens wear/Plazzo1/img1.webp", "./src/assets/Womens wear/Plazzo1/img2.webp"],
+        "image": "https://dummyimage.com/300x400/000/fff&text=Palazzo+Pants",
         "rating": {
           "rate": 4.2,
           "count": 474
@@ -228,7 +215,7 @@ const App = () => {
         "category": "hat",
         "price": "3717",
         "description": "Ideal for casual wear with excellent quality and finish.",
-        "image": ["./src/assets/Caps/Cap1/img1.webp"],
+        "image": "https://dummyimage.com/300x400/000/fff&text=Baseball+Cap",
         "rating": {
           "rate": 3.6,
           "count": 282
@@ -241,7 +228,7 @@ const App = () => {
         "category": "bottom",
         "price": "2166",
         "description": "Ideal for casual wear with excellent quality and finish.",
-        "image": ["./src/assets/Womens wear/Skirt2/img1.webp", "./src/assets/Womens wear/Skirt2/img2.webp", "./src/assets/Womens wear/Skirt2/img3.webp"],
+        "image": "https://dummyimage.com/300x400/000/fff&text=Pleated+Skirt",
         "rating": {
           "rate": 3.9,
           "count": 228
@@ -254,7 +241,7 @@ const App = () => {
         "category": "top",
         "price": "385",
         "description": "Classic look with modern appeal. Great for everyday use.",
-        "image": ["./src/assets/Mens Wear/V-neck t/img1.webp", "./src/assets/Mens Wear/V-neck t/img2.webp"],
+        "image": "https://dummyimage.com/300x400/000/fff&text=V-Neck+Tee",
         "rating": {
           "rate": 4.1,
           "count": 319
@@ -267,7 +254,7 @@ const App = () => {
         "category": "top",
         "price": "3662",
         "description": "Soft fabric for breathable comfort. Durable stitching and perfect fit.",
-        "image": ["./src/assets/Womens wear/Top2/img1.webp", "./src/assets/Womens wear/Top2/img2.webp"],
+        "image": "https://dummyimage.com/300x400/000/fff&text=Crop+Top",
         "rating": {
           "rate": 4.6,
           "count": 71
@@ -280,7 +267,7 @@ const App = () => {
         "category": "bottom",
         "price": "467",
         "description": "Classic look with modern appeal. Great for everyday use.",
-        "image": ["./src/assets/Mens Wear/Joggers1/img1.webp", "./src/assets/Mens Wear/Joggers1/img2.webp", "./src/assets/Mens Wear/Joggers1/img3.webp"],
+        "image": "https://dummyimage.com/300x400/000/fff&text=Jogger+Pants",
         "rating": {
           "rate": 4.3,
           "count": 240
@@ -293,10 +280,23 @@ const App = () => {
         "category": "top",
         "price": "3510",
         "description": "Classic look with modern appeal. Great for everyday use.",
-        "image": ["./src/assets/Mens Wear/Sweatshirt2/img1.webp", "./src/assets/Mens Wear/Sweatshirt2/img2.webp", "./src/assets/Mens Wear/Sweatshirt2/img3webp"],
+        "image": "https://dummyimage.com/300x400/000/fff&text=Hooded+Sweatshirt",
         "rating": {
           "rate": 4.2,
           "count": 143
+        }
+      },
+      {
+        "id": "27",
+        "title": "Womens Silk Blouse",
+        "type": "womens",
+        "category": "top",
+        "price": "3580",
+        "description": "Soft fabric for breathable comfort. Durable stitching and perfect fit.",
+        "image": "https://dummyimage.com/300x400/000/fff&text=Silk+Blouse",
+        "rating": {
+          "rate": 3.7,
+          "count": 237
         }
       },
       {
@@ -306,7 +306,7 @@ const App = () => {
         "category": "top",
         "price": "4585",
         "description": "Made from eco-friendly materials. Perfect for gifting as well.",
-        "image": ["./src/assets/Kids Wear/Hoddie2/img1.webp", "./src/assets/Kids Wear/Hoddie2/img2.webp"],
+        "image": "https://dummyimage.com/300x400/000/fff&text=Hoodie",
         "rating": {
           "rate": 3.7,
           "count": 118
@@ -319,7 +319,7 @@ const App = () => {
         "category": "top",
         "price": "3076",
         "description": "Soft fabric for breathable comfort. Durable stitching and perfect fit.",
-        "image": ["./src/assets/Womens wear/Top3/img1.webp", "./src/assets/Womens wear/Top3/img2.webp", "./src/assets/Womens wear/Top3/img3.webp"],
+        "image": "https://dummyimage.com/300x400/000/fff&text=Off-Shoulder+Top",
         "rating": {
           "rate": 4.5,
           "count": 452
@@ -327,12 +327,12 @@ const App = () => {
       },
       {
         "id": "30",
-        "title": "Kids T-Shirt",
+        "title": "Kids Cartoon T-Shirt",
         "type": "kids",
         "category": "top",
         "price": "4693",
         "description": "Trendy design suitable for all seasons. Lightweight and easy to maintain.",
-        "image": ["./src/assets/Kids Wear/T-shirt/img1.webp", "./src/assets/Kids Wear/T-shirt/img2.webp",],
+        "image": "https://dummyimage.com/300x400/000/fff&text=Cartoon+T-Shirt",
         "rating": {
           "rate": 4.7,
           "count": 407
@@ -340,12 +340,12 @@ const App = () => {
       },
       {
         "id": "31",
-        "title": "Womens trouser",
+        "title": "Womens Leggings",
         "type": "womens",
         "category": "bottom",
         "price": "3905",
         "description": "Ideal for casual wear with excellent quality and finish.",
-        "image": ["./src/assets/Womens wear/Trouser/img1.webp", "./src/assets/Womens wear/Trouser/img2.webp", "./src/assets/Womens wear/Trouser/img3.webp"],
+        "image": "https://dummyimage.com/300x400/000/fff&text=Leggings",
         "rating": {
           "rate": 3.6,
           "count": 147
@@ -358,7 +358,7 @@ const App = () => {
         "category": "bottom",
         "price": "3447",
         "description": "Trendy design suitable for all seasons. Lightweight and easy to maintain.",
-        "image": ["./src/assets/Womens wear/Plazzo2/img1.webp", "./src/assets/Womens wear/Plazzo2/img2.webp", "./src/assets/Womens wear/Plazzo2/img3.webp"],
+        "image": "https://dummyimage.com/300x400/000/fff&text=Palazzo+Pants",
         "rating": {
           "rate": 3.9,
           "count": 368
@@ -371,7 +371,7 @@ const App = () => {
         "category": "bottom",
         "price": "2433",
         "description": "Classic look with modern appeal. Great for everyday use.",
-        "image": ["./src/assets/Womens wear/Plazzo3/img1.webp", "./src/assets/Womens wear/Plazzo3/img2.webp"],
+        "image": "https://dummyimage.com/300x400/000/fff&text=Palazzo+Pants",
         "rating": {
           "rate": 3.5,
           "count": 278
@@ -384,7 +384,7 @@ const App = () => {
         "category": "bottom",
         "price": "3109",
         "description": "Made from eco-friendly materials. Perfect for gifting as well.",
-        "image": ["./src/assets/Mens Wear/Short1/img1.webp", "./src/assets/Mens Wear/Short1/img2.webp", "./src/assets/Mens Wear/Short1/img3.webp"],
+        "image": "https://dummyimage.com/300x400/000/fff&text=Cargo+Shorts",
         "rating": {
           "rate": 4.9,
           "count": 244
@@ -397,13 +397,25 @@ const App = () => {
         "category": "top",
         "price": "1901",
         "description": "Made from eco-friendly materials. Perfect for gifting as well.",
-        "image": ["./src/assets/Womens wear/Top4/img1.webp", "./src/assets/Womens wear/Top4/img2.webp"],
+        "image": "https://dummyimage.com/300x400/000/fff&text=Tank+Top",
         "rating": {
           "rate": 4.4,
           "count": 247
         }
       },
-
+      {
+        "id": "36",
+        "title": "Kids Tank Top",
+        "type": "kids",
+        "category": "top",
+        "price": "680",
+        "description": "Trendy design suitable for all seasons. Lightweight and easy to maintain.",
+        "image": "https://dummyimage.com/300x400/000/fff&text=Tank+Top",
+        "rating": {
+          "rate": 4.8,
+          "count": 295
+        }
+      },
       {
         "id": "37",
         "title": "Womens Crop Top",
@@ -411,7 +423,7 @@ const App = () => {
         "category": "top",
         "price": "3909",
         "description": "Ideal for casual wear with excellent quality and finish.",
-        "image": ["./src/assets/Womens wear/Top5/img1.webp", "./src/assets/Womens wear/Top5/img2.webp", "./src/assets/Womens wear/Top5/img3.webp"],
+        "image": "https://dummyimage.com/300x400/000/fff&text=Crop+Top",
         "rating": {
           "rate": 4.4,
           "count": 176
@@ -424,7 +436,7 @@ const App = () => {
         "category": "bottom",
         "price": "990",
         "description": "Soft fabric for breathable comfort. Durable stitching and perfect fit.",
-        "image": ["./src/assets/Womens wear/Plazzo4/img1.webp", "./src/assets/Womens wear/Plazzo4/img2.webp", "./src/assets/Womens wear/Plazzo4/img3.webp"],
+        "image": "https://dummyimage.com/300x400/000/fff&text=Palazzo+Pants",
         "rating": {
           "rate": 3.8,
           "count": 455
@@ -437,7 +449,7 @@ const App = () => {
         "category": "bottom",
         "price": "4831",
         "description": "Trendy design suitable for all seasons. Lightweight and easy to maintain.",
-        "image": ["./src/assets/Mens Wear/Trouser2/img1.webp", "./src/assets/Mens Wear/Trouser2/img2.webp", "./src/assets/Mens Wear/Trouser2/img3.webp"],
+        "image": "https://dummyimage.com/300x400/000/fff&text=Slim+Fit+Trousers",
         "rating": {
           "rate": 4.7,
           "count": 464
@@ -612,68 +624,3 @@ const App = () => {
     }
     ])); // or default user array
   }
-  const dispatch = useDispatch();
-  const data = useSelector((state) => state);
-
-  const [showMain, setShowMain] = useState(false);
-  const [showLogin, setShowLogin] = useState(false);
-  const [showRegister, setShowRegister] = useState(false);
-
-  useEffect(() => {
-    dispatch(asyncloadproduct());
-    dispatch(asynccurrentuser());
-    dispatch(asyncupdateproduct());
-  }, []);
-
-  const closeModal = () => {
-    setShowLogin(false);
-    setShowRegister(false);
-  };
-
-  return (
-    <main className="min-h-screen flex items-center justify-center">
-      {!showMain && <EyeIntro onComplete={() => { console.log("Animation done"); setShowMain(true); }} />}
-
-      {showMain && (
-        <div className="text-white font-thin min-w-[90%] bg-[#293241] relative">
-          <Nav openLogin={() => setShowLogin(true)} />
-          <Mainroutes
-            showLogin={showLogin}
-            setShowLogin={setShowLogin}
-            showRegister={showRegister}
-            setShowRegister={setShowRegister}
-          />
-          <ScrollToggleButton />
-
-          {(showLogin || showRegister) && (
-            <div className="fixed inset-0 bg-black/50 z-50 flex justify-center items-center">
-              <div className="absolute inset-0" onClick={closeModal}></div>
-              <div className="relative z-50 max-h-[90vh] overflow-y-auto">
-                {showLogin && (
-                  <Login
-                    onClose={closeModal}
-                    switchToRegister={() => {
-                      setShowLogin(false);
-                      setShowRegister(true);
-                    }}
-                  />
-                )}
-                {showRegister && (
-                  <Register
-                    onClose={closeModal}
-                    switchToLogin={() => {
-                      setShowRegister(false);
-                      setShowLogin(true);
-                    }}
-                  />
-                )}
-              </div>
-            </div>
-          )}
-        </div>
-      )}
-    </main>
-  );
-};
-
-export default App;

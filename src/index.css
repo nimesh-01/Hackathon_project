@@ -33,4 +33,22 @@
   #scroll:-webkit-scrollbar{
     display: none;
   }
-  
+
+@media (max-width: 430px) {
+  .mobile-search-bar {
+    display: none !important;
+  }
+
+  .dropdown-search-bar {
+    display: block !important;
+  }
+
+  /* Custom utility: w-[70%] only below 430px */
+  .small\:w-\[70\%\] {
+    width: 70% !important;
+  }
+
+  .small\:block {
+    display: block !important;
+  }
+}

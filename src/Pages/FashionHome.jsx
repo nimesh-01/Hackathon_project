@@ -8,16 +8,22 @@ import BlurText from '../Libraries/BlurText';
 import SpecialSaleSection from "./SpecialSaleSection";
 import Footer from './Footer'
 import ScrollFloat from "../Libraries/ScrollFloat";
+import Login from "./Login";
+import Register from "./Register";
 
-export default function FashionHome() {
+export default function FashionHome({ showLogin, setShowLogin, showRegister, setShowRegister }) {
   function renderedItem() {
     let data = JSON.parse(localStorage.getItem("products")).slice(0, 3)
     console.log(data);
-
     return data
   }
+  const closeModal = () => {
+    setShowLogin(false);
+    setShowRegister(false);
+  };
   return (
     <>
+    
       <div className="font-sans text-[#6D4C41] bg-[#F5F5F5]">
         {/* Hero Section */}
 
@@ -198,6 +204,31 @@ export default function FashionHome() {
       <SpecialSaleSection/>
       <InfoGrid />
       <Footer/>
+      {(showLogin || showRegister) && (
+        <div className="fixed inset-0 bg-black/50 z-50 flex justify-center items-center">
+          <div className="absolute inset-0" onClick={closeModal}></div>
+          <div className="relative z-50 max-h-[90vh] overflow-y-auto">
+            {showLogin && (
+              <Login
+                onClose={closeModal}
+                switchToRegister={() => {
+                  setShowLogin(false);
+                  setShowRegister(true);
+                }}
+              />
+            )}
+            {showRegister && (
+              <Register
+                onClose={closeModal}
+                switchToLogin={() => {
+                  setShowRegister(false);
+                  setShowLogin(true);
+                }}
+              />
+            )}
+          </div>
+        </div>
+      )}
     </>
   );
 }

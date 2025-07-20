@@ -13,7 +13,7 @@ export default function EyeIntro({ onComplete }) {
 
     const completeTimer = setTimeout(() => {
       if (onComplete) onComplete();
-    }, 6000); // Let fade-out complete
+    }, 4000); // Let fade-out complete
 
     return () => {
       clearTimeout(animateTimer);
