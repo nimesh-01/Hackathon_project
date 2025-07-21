@@ -1,75 +1,143 @@
-import React, { Suspense } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { Link, useNavigate } from 'react-router-dom'
+import React, { Suspense } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { asyncupdateprofile } from "../Store/action/Useraction";
 import { toast } from 'react-toastify';
 import Infinitescroll from "react-infinite-scroll-component";
 import Useinfiniteproducts from '../Utility/Useinfiniteproducts';
+
 const Products = () => {
-  // const { userreducer: { users }, productreducer: { products } } = useSelector((state) => state);
-  const dispatch=useDispatch()
+  const dispatch = useDispatch();
   const users = useSelector((state) => state.userreducer);
-  const {products,hasMore,fetchproducts}=Useinfiniteproducts()
+  const { products, hasMore, fetchproducts } = Useinfiniteproducts();
   const navigate = useNavigate();
 
+  const addToCartHandler = (e, id) => {
+    e.stopPropagation(); // Prevent parent click
+    toast.success("Product Added", { autoClose: 800 });
 
- const addtocarthandler = (id) => {
-
-  toast.success("Product Added ", {
-    autoClose: 800,
-  });
-  
-  const copyuser = {
-    ...users.users,
-    cart: Array.isArray(users?.cart) ? [...users.users.cart] : [...users.users.cart],
-  };
-  
-  const index = copyuser.cart.findIndex((item) => item.productId == id);
-
-  if (index === -1) {
-    copyuser.cart.push({ productId: id, quantity: 1 });
-  } else {
-    copyuser.cart[index] = {
-      productId: id,
-      quantity: copyuser.cart[index].quantity + 1,
+    const copyuser = {
+      ...users.users,
+      cart: Array.isArray(users?.cart) ? [...users.users.cart] : [...users.users.cart],
     };
-  }
-  dispatch(asyncupdateprofile(copyuser.id, copyuser));
-};
-  const renderproduct = products.map((product) => {
-    return (
-      <div key={product.id} className='flex flex-col gap-2 p-5  items-center justify-start  rounded-[10px] product' >
-        <Link to={`/product/${product.id}`} className='flex flex-col gap-2 '>
-          <img className='h-[200px] cursor-pointer object-contain rounded-[10px] ' src={product.image} alt="" />
-          <h1 className='font-bold'> {product.title}</h1>
-          <h1 className=' font-semibold'>&#8377;{product.price}</h1>
-          <p className='text-xs'>{product.description.slice(0, 60)}...</p>
-        </Link>
-        {(users.users!=null) ?
-          (<button onClick={() => addtocarthandler(product.id)} className=' duration-200 p-2 self-center
- w-[100px] self-start rounded-[10px] font-bold text-xs bg-[#ee6c4d]  cursor-pointer login-button'  >Add to cart</button>)
-          : ""}
-      </div >
 
-    )
-  })
-  return (
-    <Infinitescroll
-      dataLength={products.length} //This is important field to render the next data
-      next={fetchproducts}
-      hasMore={hasMore}
-      endMessage={
-        <p style={{ textAlign: 'center' }}>
-          <b>Yay! You have seen it all</b>
-        </p>
-      }
+    const index = copyuser.cart.findIndex((item) => item.productId === id);
+    if (index === -1) {
+      copyuser.cart.push({ productId: id, quantity: 1 });
+    } else {
+      copyuser.cart[index].quantity += 1;
+    }
+
+    dispatch(asyncupdateprofile(copyuser.id, copyuser));
+  };
+
+  const renderProduct = products.map((product) => (
+
+    <div
+      key={product.id}
+      className="cursor-pointer flex flex-col gap-3 p-4 rounded-xl shadow-md bg-[#F5F5F5] hover:shadow-xl transition-shadow duration-300"
+      onClick={() => navigate(`/product/${product.id}`)} // navigate on whole card
     >
-      <div className="w-[100%] p-3 grid grid-cols-3 gap-5">
-        <Suspense fallback={<h1 className='text-3xl text-red-500 text-center'> Loading</h1>}>
-          {renderproduct}</Suspense>
+      <div className="relative group w-full h-[200px]">
+        <img
+          src={product.image[0]}
+          alt={product.title}
+          className="w-full h-full object-contain transition-opacity duration-500 opacity-100 group-hover:opacity-0"
+        />
+        {product.image[1] && (
+          <img
+            src={product.image[1]}
+            alt={product.title}
+            className="absolute top-0 left-0 w-full h-full object-contain opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+          />
+        )}
       </div>
-    </Infinitescroll >
-  )
-}
 
-export default Products
+      <h2 className="font-bold text-[#6D4C41] text-sm">{product.title}</h2>
+      <p className="text-[#8D6E63] font-semibold text-sm">&#8377;{product.price}</p>
+      <p className="text-xs text-[#A1887F] capitalize">Type: {product.type}</p>
+      <p className="text-xs text-[#A1887F] capitalize">Category: {product.category}</p>
+      {product.rating && (
+        <p className="text-xs text-[#6D4C41]">
+          Rating: {product.rating.rate} ⭐ ({product.rating.count})
+        </p>
+      )}
+      <p className={`text-xs font-medium ${product.stock === false ? 'text-red-500' : 'text-green-600'}`}>
+        {product.stock === false ? 'Out of Stock' : 'In Stock'}
+      </p>
+
+      {users.users && (
+        <button
+          onClick={(e) => addToCartHandler(e, product.id)}
+          className="bg-[#A1887F] hover:bg-[#8D6E63] text-white rounded-md px-4 py-2 text-xs font-bold transition duration-200"
+        >
+          Add to Cart
+        </button>
+      )}
+    </div>
+  ));
+
+  return (
+    <div className="bg-[#D7CCC8] w-full min-h-screen">
+      {/* Category Buttons */}
+      <div className="w-full flex flex-wrap justify-center gap-6 py-6 px-4">
+        {[
+          {
+            label: "Men's",
+            path: "/products/mens-wear",
+            image: "./src/assets/Banner/mens.webp",
+          },
+          {
+            label: "Women's",
+            path: "/products/womens-wear",
+            image: "./src/assets/Banner/womens.jpg",
+          },
+          {
+            label: "Kids",
+            path: "/products/kids-wear",
+            image: "./src/assets/Banner/kids.jpg",
+          },
+        ].map((category) => (
+          <NavLink
+            key={category.label}
+            to={category.path}
+            className={({ isActive }) =>
+              `relative flex items-end justify-center
+              w-[90px] h-[90px] sm:w-[150px] sm:h-[150px] 
+              rounded-full bg-cover bg-top overflow-hidden 
+              shadow-md hover:shadow-xl transition duration-300 
+              ${isActive ? 'ring-4 ring-[#6D4C41]' : 'ring-1 ring-gray-300'}`
+            }
+            style={{
+              backgroundImage: `url(${category.image})`,
+            }}
+          >
+            <span className="bg-[#6D4C41CC] text-white text-[12px] sm:text-sm font-semibold px-2 py-1 w-full text-center rounded-b-full">
+              {category.label}
+            </span>
+          </NavLink>
+        ))}
+      </div>
+
+      {/* Products Grid */}
+      <Infinitescroll
+        dataLength={products.length}
+        next={fetchproducts}
+        hasMore={hasMore}
+        endMessage={
+          <p className="text-center font-bold text-[#6D4C41] my-6">Yay! You have seen it all</p>
+        }
+      >
+        <div className="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 px-4 sm:px-6 pb-10">
+          <Suspense fallback={<h1 className="text-3xl text-red-500 text-center">Loading</h1>}>
+            {renderProduct}
+            {console.log(renderProduct)}
+
+          </Suspense>
+        </div>
+      </Infinitescroll>
+    </div>
+  );
+};
+
+export default Products;

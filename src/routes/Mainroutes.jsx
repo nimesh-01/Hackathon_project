@@ -5,6 +5,11 @@ import { useSelector } from 'react-redux';
 const Home = lazy(() => import("../Pages/Home"));
 const FashionHome = lazy(() => import("../Pages/FashionHome"));
 const Products = lazy(() => import("../Pages/Products"));
+
+const Mens = lazy(() => import("../Pages/Products_type/Mens"));
+const Womens = lazy(() => import("../Pages/Products_type/Womens"));
+const Kids = lazy(() => import("../Pages/Products_type/Kids"));
+
 const UpdateProduct = lazy(() => import('../Pages/admin/UpdateProduct'));
 const CreateProduct = lazy(() => import('../Pages/admin/CreateProduct'));
 const Productdetail = lazy(() => import('../Pages/Productdetail'));
@@ -20,14 +25,19 @@ const Mainroutes = ({ showLogin, setShowLogin, showRegister, setShowRegister }) 
 
   return (
     <Routes>
-      <Route path='/' element={<FashionHome 
-        showLogin={showLogin} 
-        setShowLogin={setShowLogin} 
-        showRegister={showRegister} 
-        setShowRegister={setShowRegister} 
+      <Route path='/' element={<FashionHome
+        showLogin={showLogin}
+        setShowLogin={setShowLogin}
+        showRegister={showRegister}
+        setShowRegister={setShowRegister}
       />} />
 
       <Route path='/products' element={<Products />} />
+      <Route path='/products/mens-wear' element={<Mens />} />
+      <Route path='/products/womens-wear' element={<Womens />} />
+      <Route path='/products/kids-wear' element={<Kids />} />
+
+
       <Route path='/product/:id' element={<Productdetail />} />
 
       {/* Admin Routes */}

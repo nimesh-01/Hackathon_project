@@ -1,4 +1,5 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 
 const Footer = () => {
   return (
@@ -7,28 +8,33 @@ const Footer = () => {
 
         {/* Brand Info */}
         <div>
-          <h2 className="text-3xl font-bold">SYSTUMM</h2>
+          <h2 className="text-4xl font-extrabold bg-gradient-to-r from-[#efefef] via-[#A1887F] to-[#D7CCC8] bg-clip-text text-transparent">
+  SYSTUMM
+</h2>
+
           <p className="mt-4 text-md text-[#D7CCC8] leading-relaxed">
-              Rehna h to Systumm k niche rehna padega
+            Rehna h to Systumm k niche rehna padega
             <br />
             Not just a brand, it’s an emotion. <br />
-            Founded by <span className="text-[#F5F5F5] font-semibold">Elvish Yadav</span>.
+            Founded by <span className="text-semi font-extrabold bg-gradient-to-r from-[#efefef] via-[#A1887F] to-[#D7CCC8] bg-clip-text text-transparent">Elvish Yadav</span>.
           </p>
         </div>
 
         {/* Shop Links */}
         <div>
-          <h3 className="text-xl font-semibold mb-4">Shop</h3>
+          <h3 className="text-xl mb-4 font-extrabold bg-gradient-to-r from-[#efefef] via-[#A1887F] to-[#D7CCC8] bg-clip-text text-transparent">Shop</h3>
           <ul className="space-y-2 text-md text-[#D7CCC8]">
-            <li className="hover:text-white transition">Men</li>
-            <li className="hover:text-white transition">Women</li>
-            <li className="hover:text-white transition">Kids</li>
+            <li className="hover:text-white transition">
+              <NavLink to='/products/mens-wear'>Men</NavLink> </li>
+            <li className="hover:text-white transition"><NavLink to='/products/womens-wear'>Women</NavLink></li>
+            <li className="hover:text-white transition"><NavLink to='/products/Kids-wear'>Kids</NavLink></li>
           </ul>
         </div>
 
         {/* Support Links */}
         <div>
-          <h3 className="text-xl font-semibold mb-4">Support</h3>
+                   <h3 className="text-xl mb-4 font-extrabold bg-gradient-to-r from-[#efefef] via-[#A1887F] to-[#D7CCC8] bg-clip-text text-transparent">Support</h3>
+
           <ul className="space-y-2 text-md text-[#D7CCC8]">
             <li className="hover:text-white transition">Contact Us</li>
             <li className="hover:text-white transition">Instagram</li>
@@ -38,7 +44,8 @@ const Footer = () => {
 
         {/* Newsletter & Socials */}
         <div>
-          <h3 className="text-xl font-semibold mb-4">Stay Connected</h3>
+                    <h3 className="text-xl mb-4 font-extrabold bg-gradient-to-r from-[#efefef] via-[#A1887F] to-[#D7CCC8] bg-clip-text text-transparent">Stay Connected</h3>
+
           <div className="flex bg-[#8D6E63] rounded overflow-hidden mb-5">
             <input
               type="email"

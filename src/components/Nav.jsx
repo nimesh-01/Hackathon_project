@@ -24,14 +24,23 @@ const Nav = ({ openLogin }) => {
     };
 
     useEffect(() => {
-        const handleScroll = () => {
-            const currentScroll = window.scrollY;
-            setShowHeader(currentScroll < lastScrollY.current);
-            lastScrollY.current = currentScroll;
-        };
-        window.addEventListener('scroll', handleScroll);
-        return () => window.removeEventListener('scroll', handleScroll);
-    }, []);
+    const handleScroll = () => {
+        const currentScroll = window.scrollY;
+
+        // Only show header if the user scrolls *up* (not equal)
+        if (currentScroll < lastScrollY.current) {
+            setShowHeader(true);
+        } else if (currentScroll > lastScrollY.current) {
+            setShowHeader(false);
+        }
+
+        lastScrollY.current = currentScroll;
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+}, []);
+
 
     useEffect(() => {
         const handleClickOutside = (event) => {
@@ -56,7 +65,7 @@ const Nav = ({ openLogin }) => {
             style={{ boxShadow: '0 4px 10px rgba(109, 76, 65, 0.5)' }}
         >
             <div className="flex items-center justify-between lg:justify-around">
-                <div className="text-[#6D4C41] text-2xl font-bold tracking-wide">
+                <div className="text-[#6D4C41] text-4xl font-bold tracking-wide">
                     SYS<span className="text-[#8D6E63]">TUMM</span>
                 </div>
 
@@ -184,7 +193,7 @@ const Nav = ({ openLogin }) => {
                         Login
                     </button>
                 )}
-                {user && (currentPath === "/cart" || currentPath === "/user-profile") && (
+                {user && (
                     <button
                         onClick={async () => {
                             dispatch(asynclogoutuser());  // Wait for logout to complete

@@ -20,13 +20,14 @@ const Register = ({ onClose, switchToLogin }) => {
   };
 
   return (
-    <div className="group hover:scale-105 transition-all duration-300 ease-in-out rounded-xl overflow-hidden w-[95%] md:w-[90%] max-w-[1000px] mx-auto bg-[#D7CCC8] text-[#6D4C41] flex flex-col md:flex-row shadow-lg">
+    <div className="group transition-all duration-300 ease-in-out rounded-xl h-auto overflow-hidden w-[90%] md:w-[90%] max-w-[1000px] mx-auto bg-[#D7CCC8] text-[#6D4C41] flex flex-col md:flex-row md:items-stretch shadow-lg">
+      
       {/* Left Image */}
       <div className="md:w-1/2 bg-[#242124] w-full relative h-[200px] md:h-auto">
         <img
           src="./src/assets/loginpage-design.webp"
           alt="Register Visual"
-          className="h-full w-full md:object-cover object-contain z-20"
+          className="h-full w-full object-contain z-20"
         />
         <div className="absolute inset-0 bg-black/20 flex flex-col justify-between p-4 md:p-6 text-white">
           <div className="text-right">
@@ -43,38 +44,63 @@ const Register = ({ onClose, switchToLogin }) => {
 
       {/* Right Form */}
       <div className="md:w-1/2 w-full bg-[#A1887F] flex items-center justify-center p-4 md:p-8">
-        <form onSubmit={handleSubmit(registerhandler)} className="w-full max-w-md space-y-4 md:space-y-6 p-4 md:p-6 rounded-xl bg-[#F5F5F5] shadow-md">
+        <form onSubmit={handleSubmit(registerhandler)} className="w-full max-w-md space-y-4 md:space-y-4 p-4 md:p-4 rounded-xl bg-[#F5F5F5] shadow-md">
           <h2 className="text-2xl md:text-3xl font-bold text-center">Create Account</h2>
 
           <div className="flex gap-4">
-            <input
-              {...register("fname", { required: "First name is required" })}
-              placeholder="First name"
-              className="w-1/2 p-2 md:p-3 outline-none rounded-md border border-[#A1887F] bg-white text-base"
-            />
-            <input
-              {...register("lname")}
-              placeholder="Last name"
-              className="w-1/2 p-2 md:p-3 outline-none rounded-md border border-[#A1887F] bg-white text-base"
-            />
+            <div className="w-1/2">
+              <input
+                {...register("fname", { required: "First name is required" })}
+                placeholder="First name"
+                className="w-full p-2 md:p-3 outline-none rounded-md border border-[#A1887F] bg-white text-base"
+              />
+              <small className="text-red-400 text-xs">{errors?.fname?.message}</small>
+            </div>
+
+            <div className="w-1/2">
+              <input
+                {...register("lname")}
+                placeholder="Last name"
+                className="w-full p-2 md:p-3 outline-none rounded-md border border-[#A1887F] bg-white text-base"
+              />
+            </div>
           </div>
 
-          <input
-            {...register("username")}
-            type="text"
-            placeholder="Username"
-            className="w-full p-2 outline-none md:p-3 rounded-md border border-[#A1887F] bg-white text-base"
-          />
-          <input
-            {...register("email_id", { required: "Email is required" })}
-            type="email"
-            placeholder="Email ID"
-            className="w-full p-2 md:p-3 outline-none rounded-md border border-[#A1887F] bg-white text-base"
-          />
+          <div>
+            <input
+              {...register("username", { required: "Username is required" })}
+              type="text"
+              placeholder="Username"
+              className="w-full p-2 outline-none md:p-3 rounded-md border border-[#A1887F] bg-white text-base"
+            />
+            <small className="text-red-400 text-xs">{errors?.username?.message}</small>
+          </div>
+
+          <div>
+            <input
+              {...register("email_id", {
+                required: "Email is required",
+                pattern: {
+                  value: /^\S+@\S+$/i,
+                  message: "Enter a valid email address",
+                },
+              })}
+              type="email"
+              placeholder="Email ID"
+              className="w-full p-2 md:p-3 outline-none rounded-md border border-[#A1887F] bg-white text-base"
+            />
+            <small className="text-red-400 text-xs">{errors?.email_id?.message}</small>
+          </div>
 
           <div className="relative">
             <input
-              {...register("password", { required: "Password is required" })}
+              {...register("password", {
+                required: "Password is required",
+                minLength: {
+                  value: 6,
+                  message: "Password must be at least 6 characters",
+                },
+              })}
               type={showPassword ? "text" : "password"}
               placeholder="Password"
               className="w-full p-2 md:p-3 pr-10 outline-none rounded-md border border-[#A1887F] bg-white text-base"
@@ -103,7 +129,10 @@ const Register = ({ onClose, switchToLogin }) => {
           </button>
 
           <p className="text-xs md:text-sm text-center">
-            Already have an account? <button onClick={switchToLogin} className="text-[#6D4C41] underline">Login</button>
+            Already have an account?{" "}
+            <button onClick={switchToLogin} className="text-[#6D4C41] underline">
+              Login
+            </button>
           </p>
         </form>
       </div>

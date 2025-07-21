@@ -10,10 +10,10 @@ import Footer from './Footer'
 import ScrollFloat from "../Libraries/ScrollFloat";
 import Login from "./Login";
 import Register from "./Register";
-
+import { NavLink } from "react-router-dom";
 export default function FashionHome({ showLogin, setShowLogin, showRegister, setShowRegister }) {
   function renderedItem() {
-    let data = JSON.parse(localStorage.getItem("products")).slice(0, 3)
+    let data = JSON.parse(localStorage.getItem("products")).slice(0, 6)
     console.log(data);
     return data
   }
@@ -23,7 +23,7 @@ export default function FashionHome({ showLogin, setShowLogin, showRegister, set
   };
   return (
     <>
-    
+
       <div className="font-sans text-[#6D4C41] bg-[#F5F5F5]">
         {/* Hero Section */}
 
@@ -58,9 +58,12 @@ export default function FashionHome({ showLogin, setShowLogin, showRegister, set
                 className="custom-text-style"
               />
               <div className="space-x-4 mt-4">
-                <button className="bg-[#F5F5F5] text-[#6D4C41] px-6 py-2 rounded hover:bg-[#D7CCC8] transition font-semibold">
-                  SHOP NOW
-                </button>
+               <NavLink
+  to="/products"
+  className="inline-block bg-[#F5F5F5] text-[#6D4C41] px-6 py-2 rounded hover:bg-[#D7CCC8] transition font-semibold"
+>
+  SHOP NOW
+</NavLink>
               </div>
             </div>
           </div>
@@ -82,9 +85,12 @@ export default function FashionHome({ showLogin, setShowLogin, showRegister, set
               rootMargin="-100px"
               textAlign="center"
             /></h2>
-            <button className="px-4 py-2 bg-[#6D4C41] text-white text-sm rounded hover:bg-[#8D6E63] transition">
+            <NavLink
+              to="/products"
+              className="inline-block px-4 py-2 bg-[#6D4C41] text-white text-sm rounded hover:bg-[#8D6E63] transition"
+            >
               See All
-            </button>
+            </NavLink>
           </div>
           <p className="text-xl text-[#6D4C41] mb-6">
             Discover the latest drops in ready-to-wear, shoes and accessories.
@@ -153,26 +159,33 @@ export default function FashionHome({ showLogin, setShowLogin, showRegister, set
             {[
               {
                 title: "MENS WEAR",
-                url: "https://external-preview.redd.it/systumm-clothing-new-stock-out-now-on-elvish-yadavs-website-v0-pQeYW78qcsFENoNEXlLkrmbqhe7mAB31zeI9VXcY_VU.jpg?auto=webp&s=093721d0f3bf67e373ffbfdd6f71c3fe09a764bd"
+                url: "./src/assets/Banner/mens.webp",
+                route: "/products/Mens-wear"
               },
               {
                 title: "WOMENS WEAR",
-                url: "https://i.pinimg.com/originals/8f/75/48/8f75489d8bd296f59d336dede3db367e.jpg"
+                url: "./src/assets/Banner/womens.jpg",
+                route: "/products/womens-wear"
               },
               {
                 title: "KIDS WEAR",
-                url: "https://i.pinimg.com/originals/b2/c7/9d/b2c79d7c4bb0ec277901d0bba3385321.jpg"
+                url: "./src/assets/Banner/kids.jpg",
+                route: "/products/Kids-wear"
               }
             ].map((item, index) => (
-              <div key={index} className="relative h-120 overflow-hidden rounded-lg group">
+              <NavLink
+                key={index}
+                to={item.route}
+                className="relative h-120 overflow-hidden rounded-lg group block"
+              >
                 <div
-                  className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110"
+                  className="absolute inset-0 bg-cover bg-top transition-transform duration-500 group-hover:scale-110"
                   style={{ backgroundImage: `url(${item.url})` }}
                 />
                 <div className="absolute bottom-0 p-4 bg-[#6D4C41]/70 w-full text-white">
                   <h3 className="text-lg font-semibold">{item.title}</h3>
                 </div>
-              </div>
+              </NavLink>
             ))}
           </div>
         </section>
@@ -184,30 +197,25 @@ export default function FashionHome({ showLogin, setShowLogin, showRegister, set
         >
           <div className="bg-[#6D4C41]/70 w-full text-center py-6 text-white text-lg font-semibold">
 
-            {/* <BlurText
-  text="READY TO WEAR · COUTURE · SUMMER EDIT · ICONIC"
-  className="text-3xl font-bold text-[#fff]"
-  delay={100}
-/> */}
-<BlurText
-        text="Spring Summer 2025 Collection Launching Now"
-        animateBy="words"
-        className="text-3xl md:text-5xl font-bold text-[#fff]"
-        direction="top"
-        delay={300}
-        stepDuration={2}
-      />
-  
+            <BlurText
+              text="Spring Summer 2025 Collection Launching Now"
+              animateBy="words"
+              className="text-3xl md:text-5xl font-bold text-[#fff]"
+              direction="top"
+              delay={300}
+              stepDuration={2}
+            />
+
           </div>
         </section>
       </div>
-      <SpecialSaleSection/>
+      <SpecialSaleSection />
       <InfoGrid />
-      <Footer/>
+      <Footer />
       {(showLogin || showRegister) && (
         <div className="fixed inset-0 bg-black/50 z-50 flex justify-center items-center">
           <div className="absolute inset-0" onClick={closeModal}></div>
-          <div className="relative z-50 max-h-[90vh] overflow-y-auto">
+          <div className="relative z-50 max-h-[90vh] max-w-[90vw] overflow-y-auto">
             {showLogin && (
               <Login
                 onClose={closeModal}

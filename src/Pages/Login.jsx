@@ -5,7 +5,6 @@ import { useNavigate } from 'react-router-dom';
 import { asyncloginuser } from '../Store/action/Useraction';
 import { useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
-import FuzzyText from '../Libraries/FuzzyText';
 
 const Login = ({ onClose, switchToRegister }) => {
   const navigate = useNavigate();
@@ -23,9 +22,9 @@ const Login = ({ onClose, switchToRegister }) => {
   };
 
   return (
-    <div className="group  rounded-xl overflow-hidden w-[95%] md:w-[90%] max-w-[1000px] mx-auto bg-[#D7CCC8] text-[#6D4C41] flex flex-col md:flex-row shadow-lg">
+    <div className="group transition duration-300 ease-in-out rounded-xl overflow-hidden w-[95%] md:w-[90%] mx-auto  text-[#6D4C41] flex flex-col md:flex-row shadow-lg">
       {/* Left Image */}
-      <div className="md:w-1/2 bg-[#242124] w-full relative h-[200px] md:h-auto">
+      <div className="md:w-1/2 bg-[#242124] w-full relative h-[200px] md:h-[500px]">
         <img
           src="./src/assets/Logo/logos-removebg-preview.png"
           alt="Login Visual"
