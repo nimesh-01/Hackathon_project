@@ -1,77 +1,185 @@
-import React, { useReducer } from 'react'
-import { Link, useParams } from 'react-router-dom'
-import { useSelector } from 'react-redux'
-import { useForm } from 'react-hook-form'
-import { asyncupdateproduct } from '../Store/action/Productaction'
-import { useDispatch } from 'react-redux'
-import { useNavigate } from 'react-router-dom'
-import { asyncloadproduct } from '../Store/action/Productaction'
-import { asyncupdateprofile } from "../Store/action/Useraction";
+import React, { useState } from 'react';
+import { Link, useParams, useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
-
-
+import { asyncupdateprofile } from '../Store/action/Useraction';
+import { NavLink } from "react-router-dom";
 const Productdetail = () => {
-    const dispatch = useDispatch();
     const { id } = useParams();
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
+
     const {
         productreducer: { products },
         userreducer: { users }
-    } = useSelector((state) => state)
-    const product = products?.find((p) => p.id == id)
-    console.log(id);
+    } = useSelector(state => state);
 
+    const product = products?.find((p) => p.id === id);
+    const [selectedImage, setSelectedImage] = useState(product?.image[0]);
+    const [selectedSize, setSelectedSize] = useState(null);
+    const [hoverImage, setHoverImage] = useState(null);
+
+    const getSizeOptions = () => {
+        const { type, category } = product;
+
+        if (type === 'mens' || type === 'womens') {
+            if (category === 'top') return ['S', 'M', 'L', 'XL', '2XL'];
+            if (category === 'bottom') return ['28', '30', '32', '36', '38', '40'];
+        } else if (type === 'kids') {
+            if (category === 'top') return ['XS', 'S', 'M', 'L'];
+            if (category === 'bottom') return ['24', '26', '28', '30'];
+        }
+
+        return ['Free Size'];
+    };
+
+    const sizeOptions = getSizeOptions();
 
     const addtocarthandler = () => {
-        toast.success("Product Added ", {
-            autoClose: 800,
-        })
-        const copyuser = {
-            ...users, cart: [...users.cart],
-        };
-        const index = copyuser.cart.findIndex((item) => item.productId == id);
-
-        if (index == -1) {
-            copyuser.cart.push({ productId: id, quantity: 1 });
-        } else {
-            copyuser.cart[index] = {
-                productId: id,
-                quantity: copyuser.cart[index].quantity + 1,
-            }
-
+        if (!users) return;
+        if (!selectedSize) {
+            toast.error("Please select a size before adding to cart", { autoClose: 800 });
+            return;
         }
-        dispatch(asyncupdateprofile(copyuser.id, copyuser));
+
+        toast.success("Product Added", { autoClose: 800 });
+
+        const updatedUser = {
+            ...users,
+            cart: [...users.cart]
+        };
+
+        const index = updatedUser.cart.findIndex(item => item.productId === id && item.size === selectedSize);
+
+        if (index === -1) {
+            updatedUser.cart.push({ productId: id, quantity: 1, size: selectedSize });
+        } else {
+            updatedUser.cart[index].quantity += 1;
+        }
+
+        dispatch(asyncupdateprofile(updatedUser.id, updatedUser));
     };
-    console.log(users);
-    
-    const navigate = useNavigate();
-    if (!product) {
-        console.log("No product");
-    }
-    else {
 
-        return (
-            <div className='min-w-[100%]  flex justify-center '>
-                <div className='w-[80%] mt-5 mb-10 rounded-[10px] flex gap-10 bg-slate-900 px-20 py-10 product'>
-                    <div className='w-[40%] relative '>
-                        <img className='sticky top-10 rounded-[10px]' src={product.image} alt="product image" />
-                        {users && (users.isadmin) && (
-                            <Link className='duration-200 absolute bottom-[-30px] p-2 text-center w-[120px] rounded-[10px] font-bold text-xs bg-[#ee6c4d]  cursor-pointer login-button' to={`/admin/update-product/${product.id}`} >Update Product</Link>
+    if (!product) return <p>Product Not Found</p>;
 
-                        )}    </div>
-                    <div className='flex flex-col gap-5 w-[50%]'>
-                        <h1 className='text-3xl font-bold tracking-[1px]'>{product.title}</h1>
-                        <h1 className='font-bold text-xl'>Price : &#8377;{product.price}</h1>
-                        {(users != null ) ?
-                            (<button onClick={addtocarthandler} className=' duration-200 p-2  w-[100px] rounded-[10px] font-bold text-xs bg-[#ee6c4d]  cursor-pointer login-button'  >Add to cart</button>)
-                            : ""}
-                        <p className='leading-5'><span className='text-2xl font-semibold'>About this item: </span> <br></br>{product.description}</p>
+    return (
+        <div className="min-w-full flex justify-center bg-[#F5F5F5]">
+            <div className="w-[80%] mt-10 mb-20 flex flex-col md:flex-row gap-10 bg-white rounded-xl shadow-xl p-10">
+
+                {/* Left: Image + Thumbnails */}
+                <div className="w-full md:w-[50%] flex flex-col items-center gap-4 relative">
+                    {/* Image Display */}
+                    <div className="relative w-full max-h-[400px] aspect-[4/3]">
+                        {/* Base (Selected) Image */}
+                        <img
+                            src={`.${selectedImage}`}
+                            alt="Selected"
+                            className={`rounded-xl w-full h-full object-contain absolute top-0 left-0 transition-opacity duration-500 ease-in-out ${hoverImage ? 'opacity-0' : 'opacity-100'
+                                }`}
+                        />
+
+                        {/* Hover (Temporary) Image - also fades in/out */}
+                        <img
+                            src={`.${hoverImage || selectedImage}`}
+                            alt="Hovered"
+                            className={`rounded-xl w-full h-full object-contain absolute top-0 left-0 transition-opacity duration-500 ease-in-out ${hoverImage ? 'opacity-100' : 'opacity-0'
+                                }`}
+                        />
+                    </div>
+
+                    {/* Thumbnails */}
+                    <div className="flex gap-4 mt-4">
+                        {product.image.map((img, idx) => (
+                            <img
+                                key={idx}
+                                src={`.${img}`}
+                                alt={`Thumbnail ${idx}`}
+                                onClick={() => setSelectedImage(img)}
+                                onMouseEnter={() => setHoverImage(img)}
+                                onMouseLeave={() => setHoverImage(null)}
+                                className={`h-20 w-20 object-cover rounded-lg border-2 cursor-pointer ${selectedImage === img ? 'border-[#6D4C41]' : 'border-transparent'
+                                    }`}
+                            />
+                        ))}
                     </div>
                 </div>
+
+
+
+
+                {/* Right: Info */}
+                <div className="w-full md:w-[50%] flex flex-col justify-between gap-6">
+                    <div className="flex flex-col gap-2">
+                        <h2 className="md:text-4xl text-3xl font-bold text-[#6D4C41]">{product.title}</h2>
+                        <div className="flex items-center gap-2 text-yellow-500 font-semibold">
+                            ⭐ {product.rating.rate}
+                            <span className="text-gray-600 text-sm">({product.rating.count} reviews)</span>
+                        </div>
+                        <div className="flex items-center gap-3">
+                            <span className="text-2xl font-bold text-[#6D4C41]">₹{product.price}</span>
+                            <span className="line-through text-gray-400">₹{parseInt(product.price) + 100}</span>
+                        </div>
+
+                        <div className="text-[#6D4C41]">
+                            <p><span className="font-bold">Type:</span> {product.type}</p>
+                            <p><span className="font-bold">Category:</span> {product.category}</p>
+                        </div>
+
+                        <p className="text-gray-700"><span className="font-semibold text-lg">About this item:</span><br />{product.description}</p>
+
+                        {/* Size selection */}
+                        <div>
+                            <p className="font-semibold text-lg text-[#6D4C41] mt-4 mb-2">Select Size:</p>
+                            <div className="flex flex-wrap gap-3">
+                                {sizeOptions.map((size, idx) => (
+                                    <button
+                                        key={idx}
+                                        onClick={() => setSelectedSize(size)}
+                                        className={`px-4 py-2 rounded-lg border-2 font-semibold ${selectedSize === size
+                                            ? 'bg-[#6D4C41] text-white border-[#6D4C41]'
+                                            : 'text-[#6D4C41] border-[#6D4C41] hover:bg-[#D7CCC8]'
+                                            } transition`}
+                                    >
+                                        {size}
+                                    </button>
+                                ))}
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Buttons */}
+                    <div className="flex gap-4 mt-6">
+                        {users && (
+                            <>
+                                <button
+                                    onClick={addtocarthandler}
+                                    className="bg-[#6D4C41] text-white font-semibold px-5 py-2 rounded-lg hover:bg-[#8D6E63] transition"
+                                >
+                                    Add To Cart
+                                </button>
+                                <NavLink
+                                    to="/cart"
+                                    className="bg-[#FFA000] text-white font-semibold px-5 py-2 rounded-lg hover:bg-[#FFB300] transition text-center"
+                                >
+                                    Go to Cart
+                                </NavLink>
+                            </>
+                        )}
+                    </div>
+
+                    {/* Admin update link */}
+                    {users?.isadmin && (
+                        <Link
+                            to={`/admin/update-product/${product.id}`}
+                            className="mt-4 text-center px-4 py-2 bg-[#D7CCC8] text-[#6D4C41] rounded-lg font-bold hover:bg-[#BCAAA4] transition"
+                        >
+                            Update Product
+                        </Link>
+                    )}
+                </div>
             </div>
+        </div>
+    );
+};
 
-        )
-
-    }
-}
-
-export default Productdetail
+export default Productdetail;

@@ -20,7 +20,7 @@ const App = () => {
       "category": "top",
       "price": "4166",
       "description": "Trendy design suitable for all seasons. Lightweight and easy to maintain.",
-      "image": ["./src/assets/Menswear/Hoddie/img1.webp", "./src/assets/Menswear/Hoddie/img2.webp", "./src/assets/Menswear/Hoddie/Sweatshirt2.webp"],
+      "image": ["./src/assets/Menswear/Hoddie/img1.webp", "./src/assets/Menswear/Hoddie/img2.webp", "./src/assets/Menswear/Hoddie/img3.webp"],
       "rating": {
         "rate": 3.6,
         "count": 80

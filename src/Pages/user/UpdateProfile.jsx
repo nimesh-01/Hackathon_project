@@ -1,64 +1,68 @@
-import React from 'react'
-import { useParams } from 'react-router-dom'
-import { useForm } from 'react-hook-form'
-import { useSelector } from 'react-redux'
-import { asyncupdateprofile } from '../../Store/action/Useraction'
-import { toast } from "react-toastify"
-import { useDispatch } from 'react-redux'
-import { useNavigate } from 'react-router-dom'
-import { useEffect } from 'react'
+import React, { useEffect } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
+import { useForm } from 'react-hook-form';
+import { useSelector, useDispatch } from 'react-redux';
+import { asyncupdateprofile } from '../../Store/action/Useraction';
+import { toast } from "react-toastify";
+
 const UpdateProfile = () => {
-    
-    const { id } = (useParams())    
-    const dispatch=useDispatch()
-    const navigate=useNavigate()
-    const users = useSelector((state) => state.userreducer.users)
-    const user = [users]?.find((u) => u.id == id)
-    useEffect(() => {
-    if (user) {
-        reset({
-            fname: user.fname,
-            lname: user.lname,
-            username: user.username,
-            email_id: user.email_id,
-            password: user.password,
-        });
+  const { id } = useParams();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const users = useSelector((state) => state.userreducer.users);
+  const user = [users]?.find((u) => u.id == id);
+
+  const { register, handleSubmit, reset } = useForm({
+    defaultValues: {
+      fname: user?.fname,
+      lname: user?.lname,
+      username: user?.username,
+      email_id: user?.email_id,
+      password: user?.password,
     }
-}, [user]);
-        const { register, handleSubmit, reset, formState: { errors }, } = useForm({
-            defaultValues: {
-                fname: user?.fname,
-                lname: users?.lname,
-                username: user?.username,
-                email_id: user?.email_id,
-                password: user?.password,
-            }
-        })
-           const updatehandler = (newdata) => {
-                toast.success("Profile Updated", {
-                    autoClose: 800,
-                })
-                dispatch(asyncupdateprofile(id, newdata))
-                navigate(-1)
-            }
+  });
+
+  useEffect(() => {
+    if (user) {
+      reset({
+        fname: user.fname,
+        lname: user.lname,
+        username: user.username,
+        email_id: user.email_id,
+        password: user.password,
+      });
+    }
+  }, [user, reset]);
+
+  const updatehandler = (newdata) => {
+    const updatedUser = { ...user, ...newdata };
+    dispatch(asyncupdateprofile(id, updatedUser));
+    localStorage.setItem("users", JSON.stringify(updatedUser));
+    toast.success("Profile Updated", { autoClose: 800 });
+    navigate(-1);
+  };
+
   return (
-    <div className='flex justify-center '>
-                <form onSubmit={handleSubmit(updatehandler)} className='flex flex-col items-center w-[100%] rounded-[20px] p-[20px] py-[50px] duration-500  gap-[40px]  hover: login ' >
-                    <div className=' flex justify-evenly'>
-                        <input {...register("fname")} className='border-b outline-none w-[40%] pl-[5px] pb-[5px]' type="text" placeholder='First Name...' />
-                        <input {...register("lname")} className='border-b outline-none w-[40%] pl-[5px] pb-[5px]' type="text" placeholder='Last Name ...' />
+    <div className="flex justify-center py-10 bg-[#F5F5F5] min-h-screen">
+      <form
+        onSubmit={handleSubmit(updatehandler)}
+        className="bg-white w-[90%] max-w-[600px] p-10 rounded-xl shadow-md flex flex-col gap-6"
+      >
+        <h2 className="text-2xl font-bold text-[#6D4C41]">Update Profile</h2>
 
-                    </div>
-                    <input {...register("username")} className='border-b outline-none w-[80%] pl-[5px] pb-[5px]' type="text" placeholder='Username...' />
+        <div className="flex gap-4">
+          <input {...register("fname")} placeholder="First Name" className="w-1/2 px-4 py-2 border-b outline-none" />
+          <input {...register("lname")} placeholder="Last Name" className="w-1/2 px-4 py-2 border-b outline-none" />
+        </div>
 
-                    <input {...register("email_id")} className='border-b outline-none w-[80%] pl-[5px] pb-[5px]' type="email" placeholder='Email ID...' />
+        <input {...register("username")} placeholder="Username" className="w-full px-4 py-2 border-b outline-none" />
+        <input {...register("email_id")} placeholder="Email ID" className="w-full px-4 py-2 border-b outline-none" />
+        <input {...register("password")} placeholder="Password" type="password" className="w-full px-4 py-2 border-b outline-none" />
 
-                    <input {...register("password")} className='border-b outline-none w-[80%] pl-[5px] pb-[5px]' type="password" placeholder='Password...' />
+        <input type="submit" value="Save" className="bg-[#D7CCC8] text-[#6D4C41] px-6 py-2 rounded-lg font-bold hover:bg-[#BCAAA4] cursor-pointer transition" />
+      </form>
+    </div>
+  );
+};
 
-                    <input type="submit" className='px-10 py-2 duration-200 rounded-[10px] font-bold text-xl bg-[rgba(205, 200, 200, 0.55)] cursor-pointer login-buttons' value="Save" />
- </form>
-            </div>
-  )
-}
-
-export default UpdateProfile
+export default UpdateProfile;
