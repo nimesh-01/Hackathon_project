@@ -10,13 +10,16 @@ import Footer from './Footer'
 import ScrollFloat from "../Libraries/ScrollFloat";
 import Login from "./Login";
 import Register from "./Register";
-import { NavLink } from "react-router-dom";
+import { NavLink ,useNavigate} from "react-router-dom";
+
 export default function FashionHome({ showLogin, setShowLogin, showRegister, setShowRegister }) {
   function renderedItem() {
     let data = JSON.parse(localStorage.getItem("products")).slice(0, 6)
     console.log(data);
     return data
   }
+    const navigate = useNavigate();
+  
   const closeModal = () => {
     setShowLogin(false);
     setShowRegister(false);
@@ -58,12 +61,12 @@ export default function FashionHome({ showLogin, setShowLogin, showRegister, set
                 className="custom-text-style"
               />
               <div className="space-x-4 mt-4">
-               <NavLink
-  to="/products"
-  className="inline-block bg-[#F5F5F5] text-[#6D4C41] px-6 py-2 rounded hover:bg-[#D7CCC8] transition font-semibold"
->
-  SHOP NOW
-</NavLink>
+                <NavLink
+                  to="/products"
+                  className="inline-block bg-[#F5F5F5] text-[#6D4C41] px-6 py-2 rounded hover:bg-[#D7CCC8] transition font-semibold"
+                >
+                  SHOP NOW
+                </NavLink>
               </div>
             </div>
           </div>
@@ -105,12 +108,15 @@ export default function FashionHome({ showLogin, setShowLogin, showRegister, set
             }}
           >
             {renderedItem().map((item, idx) => (
-              <div
-                key={idx}
+
+
+              <div 
+                onClick={() => navigate(`/product/${item.id}`)}
+                key={idx} 
                 className="min-w-[200px] h-[500px] md:min-w-[240px] lg:min-w-[280px] flex-shrink-0 border rounded-lg overflow-hidden bg-[#F5F5F5] shadow-md"
               >
                 {/* Fixed Aspect Ratio Container */}
-                <div className="aspect-[3/4] h-[80%] bg-[#A1887F] overflow-hidden">
+                <div  className="aspect-[3/4] h-[80%] bg-[#A1887F] overflow-hidden">
                   <div
                     className="flex overflow-x-auto scrollbar-hide h-full w-full space-x-2 snap-x snap-mandatory scroll-smooth"
                     style={{

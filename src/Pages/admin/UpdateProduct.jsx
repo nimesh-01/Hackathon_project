@@ -7,7 +7,7 @@ import { useForm } from 'react-hook-form'
 import { toast } from 'react-toastify'
 import { useEffect } from 'react';
 import { asyncdeleteproduct, asyncupdateproduct } from '../../Store/action/Productaction';
-import { asyncupdateprofile } from '../../Store/action/Useraction';
+import { asyncupdateprofile, cleanDeletedProductsFromAllCarts } from '../../Store/action/Useraction';
 const UpdateProduct = () => {
     const { id } = useParams()
     const products = useSelector((state) => state.productreducer.products)
@@ -40,33 +40,27 @@ const UpdateProduct = () => {
         navigate(-1)
     }
     const Deletehandler = async () => {
-    const productIdToDelete = product?.id;
+        const productIdToDelete = product?.id;
+        if (!productIdToDelete) return;
 
-    if (!productIdToDelete) return;
+        const copyuser = {
+            ...users.users,
+            cart: Array.isArray(users.users.cart) ? [...users.users.cart] : [],
+        };
 
-    // Ensure cart is an array
-    const copyuser = {
-        ...users,
-        cart: Array.isArray(users.cart) ? [...users.cart] : [],
+        copyuser.cart = copyuser.cart.filter((item) => item.productId !== productIdToDelete);
+
+        await dispatch(asyncupdateprofile(copyuser.id, copyuser));
+        await dispatch(asyncdeleteproduct(productIdToDelete));
+        cleanDeletedProductsFromAllCarts();
+
+        toast.success("Product Deleted", {
+            autoClose: 800,
+        });
+
+        navigate("/products");
     };
 
-    // Remove the product from the user's cart
-    copyuser.cart = copyuser.cart.filter((item) => item.productId !== productIdToDelete);
-
-    // Update user profile first
-    await dispatch(asyncupdateprofile(copyuser.id, copyuser));
-
-    // Then delete the product from product list
-    await dispatch(asyncdeleteproduct(productIdToDelete));
-
-    // Show toast
-    toast.success("Product Deleted", {
-        autoClose: 800,
-    });
-
-    // Navigate away
-    navigate("/products");
-};
 
 
     return (

@@ -52,3 +52,14 @@
     display: block !important;
   }
 }
+/* Fix wrapping issue by shrinking search bar in mid-screens */
+@media screen and (min-width: 700px) and (max-width: 950px) {
+  .search-bar input {
+    width: 6rem !important; /* 96px */
+  }
+
+  .search-bar {
+    max-width: 180px;
+    flex-shrink: 1;
+  }
+}

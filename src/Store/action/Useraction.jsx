@@ -49,34 +49,20 @@ export const asyncupdateprofile = (id, user) => async (dispatch, getState) => {
   let users = getStoredUsers();
   const products = JSON.parse(localStorage.getItem("products")) || [];
 
-  console.log("🟢 Products in localStorage:", products);
-  console.log("🟢 Product IDs:", products.map(p => p.id));
-
   const cart = user.cart || [];
-  console.log("🟡 User cart before filtering:", cart);
-  console.log("🟡 Cart item IDs:", cart.map(c => c.id));
 
-  // ✅ Fix: compare IDs as strings to avoid type mismatch
   const validCart = cart.filter(cartItem =>
-    products.some(product => String(product.id) === String(cartItem.id))
+    products.some(product => String(product.id) === String(cartItem.productId))
   );
-
-  console.log("✅ Filtered valid cart:", validCart);
 
   const updatedUser = { ...user, cart: validCart };
 
-  // ✅ Update in user list
   users = users.map(u => u.id === id ? updatedUser : u);
   saveUsers(users);
 
-  // ✅ Update current logged-in user
   localStorage.setItem("user", JSON.stringify(updatedUser));
-
   dispatch(asynccurrentuser());
 };
-
-
-
 
 export const asyncdeleteprofile = (id) => async (dispatch, getState) => {
   const users = getStoredUsers().filter((u) => u.id !== id);
@@ -89,10 +75,20 @@ export const cleanDeletedProductsFromAllCarts = () => {
 
   const cleanedUsers = users.map(user => {
     const validCart = (user.cart || []).filter(cartItem =>
-      products.some(product => product.id === cartItem.id)
+      products.some(product => String(product.id) === String(cartItem.productId))
     );
-    return { ...user, cart: validCart };
+    return { ...user, cart: validCart }; // ✅ just assign the cleaned cart
   });
 
   saveUsers(cleanedUsers);
+
+  // 🛠 Also update the currently logged-in user
+  const currentUser = JSON.parse(localStorage.getItem("user"));
+  if (currentUser) {
+    const updatedCurrent = cleanedUsers.find(u => u.id === currentUser.id);
+    if (updatedCurrent) {
+      localStorage.setItem("user", JSON.stringify(updatedCurrent));
+    }
+  }
 };
+
