@@ -2,9 +2,9 @@
 import React, { useState, useEffect } from "react";
 
 const images = [
-  "./src/assets/Logo/Front_1.png",
-  "./src/assets/Logo/Front2.webp",
-  "./src/assets/Logo/Front3.webp",
+  "./assets/Logo/Front_1.png",
+  "./assets/Logo/Front2.webp",
+  "./assets/Logo/Front3.webp",
 ];
 
 const ImageSlider = () => {

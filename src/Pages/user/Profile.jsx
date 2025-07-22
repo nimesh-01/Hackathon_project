@@ -4,7 +4,7 @@ import { toast } from "react-toastify";
 import { useForm } from "react-hook-form";
 import { asyncdeleteprofile, asyncupdateprofile } from "../../Store/action/Useraction";
 
-const defaultImage = "https://via.placeholder.com/150/000000/FFFFFF?text=User";
+const defaultImage = "https://cdn0.iconfinder.com/data/icons/universal-web-mobile-4/48/389-1024.png";
 
 const Profile = () => {
   const dispatch = useDispatch();
@@ -119,9 +119,10 @@ const Profile = () => {
           <label htmlFor="imgUpload" className="cursor-pointer relative group text-center">
             <img
               src={profileImg}
-              className="w-24 h-24 rounded-full object-cover border-4 border-white shadow-md"
+              className="w-40 h-40 rounded-full object-cover border-4 border-white shadow-md"
               alt="profile"
             />
+            
             <input
               id="imgUpload"
               type="file"

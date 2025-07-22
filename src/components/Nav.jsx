@@ -82,13 +82,17 @@ const Nav = ({ openLogin }) => {
                 </div>
 
                 {/* Desktop Navigation */}
-            <div
-  className="hidden md:flex px-3 py-2 my-3 mr-1 rounded-full flex-nowrap items-center gap-5 max-w-full overflow-hidden custom-shadow"
-  style={{ boxShadow: "0 0 10px rgba(0, 0, 0, 0.5)" }}
->
+                <div
+                    className="hidden md:flex px-3 py-2 my-3 mr-1 rounded-full flex-nowrap items-center gap-5 max-w-full overflow-hidden custom-shadow"
+                    style={{ boxShadow: "0 0 10px rgba(0, 0, 0, 0.5)" }}
+                >
 
-
-                {currentPath !== "/" && (
+                    {currentPath !== "/About" && (
+                        <NavLink to="/About" className="text-[#6D4C41] text-sm font-semibold hover:text-[#8D6E63] transition whitespace-nowrap">
+                            About
+                        </NavLink>
+                    )}
+                    {currentPath !== "/" && (
                         <NavLink to="/" className="text-[#6D4C41] text-sm font-semibold hover:text-[#8D6E63] transition whitespace-nowrap">
                             Home
                         </NavLink>
@@ -136,71 +140,71 @@ const Nav = ({ openLogin }) => {
                             Logout
                         </button>
                     )}
+                </div>
+
+                {/* Hamburger for Mobile */}
+                <div className="md:hidden flex items-center">
+                    <img
+                        src="./src/assets/Icons/hambergurg.png"
+                        alt="Menu"
+                        className="w-8 h-8 cursor-pointer"
+                        onClick={() => setMenuOpen(prev => !prev)}
+                    />
+                </div>
             </div>
 
-            {/* Hamburger for Mobile */}
-            <div className="md:hidden flex items-center">
-                <img
-                    src="./src/assets/Icons/hambergurg.png"
-                    alt="Menu"
-                    className="w-8 h-8 cursor-pointer"
-                    onClick={() => setMenuOpen(prev => !prev)}
-                />
+            {/* Mobile Dropdown */}
+            <div
+                ref={menuRef}
+                className={`md:hidden absolute right-6 mt-4 p-4 bg-white text-[#4E342E] rounded-xl shadow-lg transition-all duration-300 ease-in-out z-50 w-1/2 max-w-[90vw] small:w-[70%] ${menuOpen ? 'opacity-100 scale-100 translate-y-0' : 'opacity-0 scale-95 -translate-y-2 pointer-events-none'}`}
+            >
+                {currentPath !== "/" && (
+                    <NavLink to="/" onClick={() => setMenuOpen(false)} className="block py-2 px-3 rounded-md hover:bg-[#6D4C41] hover:text-white transition-all">
+                        Home
+                    </NavLink>
+                )}
+                {currentPath !== "/products" && (
+                    <NavLink to="/products" onClick={() => setMenuOpen(false)} className="block py-2 px-3 rounded-md hover:bg-[#6D4C41] hover:text-white transition-all">
+                        Products
+                    </NavLink>
+                )}
+                {isAdmin && (
+                    <NavLink to="/admin/create-product" onClick={() => setMenuOpen(false)} className="block py-2 px-3 rounded-md hover:bg-[#6D4C41] hover:text-white transition-all">
+                        Add Product
+                    </NavLink>
+                )}
+                {user && currentPath !== "/user-profile" && (
+                    <NavLink to="/user-profile" onClick={() => setMenuOpen(false)} className="block py-2 px-3 rounded-md hover:bg-[#6D4C41] hover:text-white transition-all">
+                        Profile
+                    </NavLink>
+                )}
+                {user && currentPath !== "/cart" && (
+                    <NavLink to="/cart" onClick={() => setMenuOpen(false)} className="block py-2 px-3 rounded-md hover:bg-[#6D4C41] hover:text-white transition-all">
+                        Cart
+                    </NavLink>
+                )}
+                {!user ? (
+                    <button
+                        onClick={() => {
+                            openLogin();
+                            setMenuOpen(false);
+                        }}
+                        className="block py-2 w-full text-left px-3 rounded-md hover:bg-[#6D4C41] hover:text-white transition-all"
+                    >
+                        Login
+                    </button>
+                ) : (
+                    <button
+                        onClick={() => {
+                            dispatch(asynclogoutuser());
+                            setMenuOpen(false);
+                        }}
+                        className="block py-2 w-full text-left px-3 rounded-md hover:bg-[#6D4C41] hover:text-white transition-all"
+                    >
+                        Logout
+                    </button>
+                )}
             </div>
-        </div>
-
-            {/* Mobile Dropdown */ }
-    <div
-        ref={menuRef}
-        className={`md:hidden absolute right-6 mt-4 p-4 bg-white text-[#4E342E] rounded-xl shadow-lg transition-all duration-300 ease-in-out z-50 w-1/2 max-w-[90vw] small:w-[70%] ${menuOpen ? 'opacity-100 scale-100 translate-y-0' : 'opacity-0 scale-95 -translate-y-2 pointer-events-none'}`}
-    >
-        {currentPath !== "/" && (
-            <NavLink to="/" onClick={() => setMenuOpen(false)} className="block py-2 px-3 rounded-md hover:bg-[#6D4C41] hover:text-white transition-all">
-                Home
-            </NavLink>
-        )}
-        {currentPath !== "/products" && (
-            <NavLink to="/products" onClick={() => setMenuOpen(false)} className="block py-2 px-3 rounded-md hover:bg-[#6D4C41] hover:text-white transition-all">
-                Products
-            </NavLink>
-        )}
-        {isAdmin && (
-            <NavLink to="/admin/create-product" onClick={() => setMenuOpen(false)} className="block py-2 px-3 rounded-md hover:bg-[#6D4C41] hover:text-white transition-all">
-                Add Product
-            </NavLink>
-        )}
-        {user && currentPath !== "/user-profile" && (
-            <NavLink to="/user-profile" onClick={() => setMenuOpen(false)} className="block py-2 px-3 rounded-md hover:bg-[#6D4C41] hover:text-white transition-all">
-                Profile
-            </NavLink>
-        )}
-        {user && currentPath !== "/cart" && (
-            <NavLink to="/cart" onClick={() => setMenuOpen(false)} className="block py-2 px-3 rounded-md hover:bg-[#6D4C41] hover:text-white transition-all">
-                Cart
-            </NavLink>
-        )}
-        {!user ? (
-            <button
-                onClick={() => {
-                    openLogin();
-                    setMenuOpen(false);
-                }}
-                className="block py-2 w-full text-left px-3 rounded-md hover:bg-[#6D4C41] hover:text-white transition-all"
-            >
-                Login
-            </button>
-        ) : (
-            <button
-                onClick={() => {
-                    dispatch(asynclogoutuser());
-                    setMenuOpen(false);
-                }}
-                className="block py-2 w-full text-left px-3 rounded-md hover:bg-[#6D4C41] hover:text-white transition-all"
-            >
-                Logout
-            </button>
-        )}
-    </div>
         </header >
     );
 };

@@ -101,7 +101,7 @@ const Cart = () => {
                   </div>
 
                   {/* Price (Desktop) */}
-                  <div className="text-[#8D6E63] hidden md:block">₹{parseFloat(product?.price).toFixed(2)}</div>
+                  <div className="text-[#8D6E63] hidden md:block">₹{(product?.price)}</div>
 
                   {/* Quantity Controls */}
                   <div className="flex items-center gap-2">

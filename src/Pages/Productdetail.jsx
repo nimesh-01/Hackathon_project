@@ -1,11 +1,18 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useParams, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import { asyncupdateprofile } from '../Store/action/Useraction';
 import { NavLink } from "react-router-dom";
 const Productdetail = () => {
-    const { id } = useParams();
+    // useEffect(() => {
+    //   const { id } = useParams();
+    //   return () => {
+    //        const { id } = useParams();
+    //   }
+    // }, [])
+      const { id } = useParams();
+    
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
@@ -18,6 +25,7 @@ const Productdetail = () => {
     const [selectedImage, setSelectedImage] = useState(product?.image[0]);
     const [selectedSize, setSelectedSize] = useState(null);
     const [hoverImage, setHoverImage] = useState(null);
+console.log(product);
 
     const getSizeOptions = () => {
         const { type, category } = product;

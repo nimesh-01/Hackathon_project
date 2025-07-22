@@ -85,17 +85,17 @@ const Products = () => {
           {
             label: "Men's",
             path: "/products/mens-wear",
-            image: "./src/assets/Banner/mens.webp",
+            image: "./assets/Banner/mens.webp",
           },
           {
             label: "Women's",
             path: "/products/womens-wear",
-            image: "./src/assets/Banner/womens.jpg",
+            image: "./assets/Banner/womens.jpg",
           },
           {
             label: "Kids",
             path: "/products/kids-wear",
-            image: "./src/assets/Banner/kids.jpg",
+            image: "./assets/Banner/kids.jpg",
           },
         ].map((category) => (
           <NavLink

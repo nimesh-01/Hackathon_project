@@ -26,7 +26,7 @@ const Login = ({ onClose, switchToRegister }) => {
       {/* Left Image */}
       <div className="md:w-1/2 bg-[#242124] w-full relative h-[200px] md:h-[500px]">
         <img
-          src="./src/assets/Logo/logos-removebg-preview.png"
+          src="./assets/Logo/logos-removebg-preview.png"
           alt="Login Visual"
           className="h-full w-full md:object-cover object-contain z-20"
         />

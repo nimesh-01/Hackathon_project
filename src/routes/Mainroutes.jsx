@@ -14,10 +14,11 @@ const UpdateProduct = lazy(() => import('../Pages/admin/UpdateProduct'));
 const CreateProduct = lazy(() => import('../Pages/admin/CreateProduct'));
 const Productdetail = lazy(() => import('../Pages/Productdetail'));
 const Profile = lazy(() => import('../Pages/user/Profile'));
-const UpdateProfile = lazy(() => import('../Pages/user/UpdateProfile'));
 const Pagenotfound = lazy(() => import('../Pagenotfound'));
 const Authwrapper = lazy(() => import('./Authwrapper'));
 const Cart = lazy(() => import('../Pages/Cart'));
+const About = lazy(() => import('../Pages/About'));
+
 
 const Mainroutes = ({ showLogin, setShowLogin, showRegister, setShowRegister }) => {
   const user = useSelector((state) => state.userreducer);
@@ -36,7 +37,7 @@ const Mainroutes = ({ showLogin, setShowLogin, showRegister, setShowRegister }) 
       <Route path='/products/mens-wear' element={<Mens />} />
       <Route path='/products/womens-wear' element={<Womens />} />
       <Route path='/products/kids-wear' element={<Kids />} />
-
+      <Route path='/about' element={<About />} />
 
       <Route path='/product/:id' element={<Productdetail />} />
 
@@ -45,9 +46,7 @@ const Mainroutes = ({ showLogin, setShowLogin, showRegister, setShowRegister }) 
       <Route path='/admin/update-product/:id' element={<Authwrapper><UpdateProduct /></Authwrapper>} />
 
       {/* User Routes */}
-      <Route path='/user-profile' element={<Authwrapper><Profile /></Authwrapper>}>
-        <Route path='update-profile/:id' element={<Authwrapper><UpdateProfile /></Authwrapper>} />
-      </Route>
+      <Route path='/user-profile' element={<Authwrapper><Profile /></Authwrapper>} />
       <Route path='/cart' element={<Authwrapper><Cart /></Authwrapper>} />
 
       {/* Fallback */}

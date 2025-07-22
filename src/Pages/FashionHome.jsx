@@ -165,17 +165,17 @@ export default function FashionHome({ showLogin, setShowLogin, showRegister, set
             {[
               {
                 title: "MENS WEAR",
-                url: "./src/assets/Banner/mens.webp",
+                url: "./assets/Banner/mens.webp",
                 route: "/products/Mens-wear"
               },
               {
                 title: "WOMENS WEAR",
-                url: "./src/assets/Banner/womens.jpg",
+                url: "./assets/Banner/womens.jpg",
                 route: "/products/womens-wear"
               },
               {
                 title: "KIDS WEAR",
-                url: "./src/assets/Banner/kids.jpg",
+                url: "./assets/Banner/kids.jpg",
                 route: "/products/Kids-wear"
               }
             ].map((item, index) => (

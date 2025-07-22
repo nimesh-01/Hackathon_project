@@ -25,7 +25,7 @@ const Register = ({ onClose, switchToLogin }) => {
       {/* Left Image */}
       <div className="md:w-1/2 bg-[#242124] w-full relative h-[200px] md:h-auto">
         <img
-          src="./src/assets/loginpage-design.webp"
+          src="./assets/loginpage-design.webp"
           alt="Register Visual"
           className="h-full w-full object-contain z-20"
         />
