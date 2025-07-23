@@ -1,0 +1,90 @@
+/* NavbarResponsive.css */
+
+/* For screen width up to 1024px - adjust search width and nav spacing */
+@media (max-width: 1024px) {
+  .search-bar input {
+    width: 10rem !important;
+  }
+
+  .desktop-nav {
+    gap: 1rem !important;
+    padding: 0.5rem 1rem;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+}
+
+/* Hide desktop nav below 900px */
+@media (max-width: 900px) {
+  .desktop-nav {
+    display: none !important;
+  }
+
+  .hamburger {
+    display: block !important;
+  }
+}
+
+/* Between 768px and 900px - increase padding, font size, icon scaling */
+@media (min-width: 768px) and (max-width: 1024px) {
+  header {
+    padding-top: 0.7rem !important;
+    padding-bottom: 0.7rem !important;
+  }
+
+  .logo {
+    font-size: 1.75rem !important;
+  }
+
+  .desktop-nav {
+    padding: 0.75rem 1.25rem !important;
+    margin-top: 0.75rem !important;
+    margin-bottom: 0.75rem !important;
+  }
+}
+
+/* Below 768px - shrink logo, hamburger and center dropdown */
+@media (max-width: 768px) {
+  .logo {
+    font-size: 1.8rem !important;
+  }
+
+  .hamburger {
+    width: 30px !important;
+    height: 30px !important;
+  }
+
+  .mobile-dropdown {
+    width: 80% !important;
+    right: 10% !important;
+  }
+
+  /* Show mid-visible search bar between 500px–768px */
+  .mid-visible {
+    display: flex !important;
+  }
+}
+
+/* Below 500px - hide mid-visible search bar and show dropdown search */
+@media (max-width: 500px) {
+  .search-bar,
+  .mid-visible {
+    display: none !important;
+  }
+
+  .mobile-dropdown {
+    width: 90% !important;
+    right: 5% !important;
+  }
+
+  .mobile-search {
+    display: block !important;
+  }
+}
+
+/* Ensure mobile search is hidden on wider screens */
+@media (min-width: 500px) {
+  .mobile-search {
+    display: none !important;
+  }
+}

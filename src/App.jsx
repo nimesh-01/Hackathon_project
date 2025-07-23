@@ -1,17 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import axios from "./api/Axiosconfig";
-import Mainroutes from './routes/Mainroutes';
-import Nav from './components/Nav';
 import { asynccurrentuser } from './Store/action/Useraction';
 import { asyncloadproduct, asyncupdateproduct } from './Store/action/Productaction';
+import Mainroutes from './routes/Mainroutes';
+import Nav from './components/Nav';
 import ScrollToggleButton from "./Pages/ScrollToggleButton";
 import EyeIntro from "./Pages/EyeIntro";
 import Login from './Pages/Login';
 import Register from './Pages/Register';
 
 const App = () => {
-  if (!localStorage.getItem("products")) {
+    if (!localStorage.getItem("products")) {
   localStorage.setItem("products", JSON.stringify([
     {
       "id": "1",
@@ -444,7 +443,6 @@ const App = () => {
 },
   ]));
 }
-
   if (!localStorage.getItem("users")) {
     localStorage.setItem("users", JSON.stringify([{
       "id": "aJTwaStvW1Ae4_errOmZn",
@@ -454,7 +452,7 @@ const App = () => {
       "email_id": "nimesh01@gmail.com",
       "password": "111111",
       "isadmin": true,
-      "image":"./assets/Profile_img/nimesh_profileimg.jpg",
+      "image": "./assets/Profile_img/nimesh_profileimg.jpg",
       "cart": []
     },
     {
@@ -470,7 +468,6 @@ const App = () => {
     ])); // or default user array
   }
   const dispatch = useDispatch();
-  const data = useSelector((state) => state);
 
   const [showMain, setShowMain] = useState(true);
   const [showLogin, setShowLogin] = useState(false);
@@ -489,10 +486,10 @@ const App = () => {
 
   return (
     <main className="min-h-screen w-[100vw] flex items-center justify-center">
-      {!showMain && <EyeIntro onComplete={() => { console.log("Animation done"); setShowMain(true); }} />}
+      {!showMain && <EyeIntro onComplete={() => setShowMain(true)} />}
 
       {showMain && (
-        <div className="text-[] font-thin min-w-[100%]  relative">
+        <div className="text-[] font-thin min-w-[100%] relative">
           <Nav openLogin={() => setShowLogin(true)} />
           <Mainroutes
             showLogin={showLogin}
@@ -505,7 +502,7 @@ const App = () => {
           {(showLogin || showRegister) && (
             <div className="fixed inset-0 bg-black/50 z-50 flex justify-center items-center">
               <div className="absolute inset-0" onClick={closeModal}></div>
-              <div className="relative z-50 max-h-[90vh] overflow-y-auto">
+              <div className="relative z-50 max-h-[90vh] max-w-[90vw] overflow-y-auto">
                 {showLogin && (
                   <Login
                     onClose={closeModal}

@@ -1,18 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useParams, useNavigate } from 'react-router-dom';
+import { Link, useParams, useNavigate, NavLink } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import { asyncupdateprofile } from '../Store/action/Useraction';
-import { NavLink } from "react-router-dom";
+
 const Productdetail = () => {
-    // useEffect(() => {
-    //   const { id } = useParams();
-    //   return () => {
-    //        const { id } = useParams();
-    //   }
-    // }, [])
-      const { id } = useParams();
-    
+    const { id } = useParams();
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
@@ -21,13 +14,26 @@ const Productdetail = () => {
         userreducer: { users }
     } = useSelector(state => state);
 
-    const product = products?.find((p) => p.id === id);
-    const [selectedImage, setSelectedImage] = useState(product?.image[0]);
+    const [product, setProduct] = useState(null);
+    const [selectedImage, setSelectedImage] = useState(null);
     const [selectedSize, setSelectedSize] = useState(null);
     const [hoverImage, setHoverImage] = useState(null);
-console.log(product);
+
+    // Load product from Redux store
+    useEffect(() => {
+        if (products && products.length > 0) {
+            const found = products.find(p => p.id === id);
+            if (!found) {
+                navigate('/not-found'); // or navigate('/')
+            } else {
+                setProduct(found);
+                setSelectedImage(found.image[0]);
+            }
+        }
+    }, [products, id, navigate]);
 
     const getSizeOptions = () => {
+        if (!product) return [];
         const { type, category } = product;
 
         if (type === 'mens' || type === 'womens') {
@@ -45,6 +51,7 @@ console.log(product);
 
     const addtocarthandler = () => {
         if (!users) return;
+
         if (!selectedSize) {
             toast.error("Please select a size before adding to cart", { autoClose: 800 });
             return;
@@ -68,7 +75,9 @@ console.log(product);
         dispatch(asyncupdateprofile(updatedUser.id, updatedUser));
     };
 
-    if (!product) return <p>Product Not Found</p>;
+    if (!product) {
+        return <p className="text-center text-xl mt-20">Loading product details...</p>;
+    }
 
     return (
         <div className="min-w-full flex justify-center bg-[#F5F5F5]">
@@ -76,22 +85,17 @@ console.log(product);
 
                 {/* Left: Image + Thumbnails */}
                 <div className="w-full md:w-[50%] flex flex-col items-center gap-4 relative">
-                    {/* Image Display */}
                     <div className="relative w-full max-h-[400px] aspect-[4/3]">
-                        {/* Base (Selected) Image */}
                         <img
                             src={`.${selectedImage}`}
                             alt="Selected"
-                            className={`rounded-xl w-full h-full object-contain absolute top-0 left-0 transition-opacity duration-500 ease-in-out ${hoverImage ? 'opacity-0' : 'opacity-100'
-                                }`}
+                            className={`rounded-xl w-full h-full object-contain absolute top-0 left-0 transition-opacity duration-500 ease-in-out ${hoverImage ? 'opacity-0' : 'opacity-100'}`}
                         />
 
-                        {/* Hover (Temporary) Image - also fades in/out */}
                         <img
                             src={`.${hoverImage || selectedImage}`}
                             alt="Hovered"
-                            className={`rounded-xl w-full h-full object-contain absolute top-0 left-0 transition-opacity duration-500 ease-in-out ${hoverImage ? 'opacity-100' : 'opacity-0'
-                                }`}
+                            className={`rounded-xl w-full h-full object-contain absolute top-0 left-0 transition-opacity duration-500 ease-in-out ${hoverImage ? 'opacity-100' : 'opacity-0'}`}
                         />
                     </div>
 
@@ -105,17 +109,13 @@ console.log(product);
                                 onClick={() => setSelectedImage(img)}
                                 onMouseEnter={() => setHoverImage(img)}
                                 onMouseLeave={() => setHoverImage(null)}
-                                className={`h-20 w-20 object-cover rounded-lg border-2 cursor-pointer ${selectedImage === img ? 'border-[#6D4C41]' : 'border-transparent'
-                                    }`}
+                                className={`h-20 w-20 object-cover rounded-lg border-2 cursor-pointer ${selectedImage === img ? 'border-[#6D4C41]' : 'border-transparent'}`}
                             />
                         ))}
                     </div>
                 </div>
 
-
-
-
-                {/* Right: Info */}
+                {/* Right: Product Info */}
                 <div className="w-full md:w-[50%] flex flex-col justify-between gap-6">
                     <div className="flex flex-col gap-2">
                         <h2 className="md:text-4xl text-3xl font-bold text-[#6D4C41]">{product.title}</h2>
@@ -155,7 +155,7 @@ console.log(product);
                         </div>
                     </div>
 
-                    {/* Buttons */}
+                    {/* Cart & Admin Buttons */}
                     <div className="flex gap-4 mt-6">
                         {users && (
                             <>
@@ -175,7 +175,7 @@ console.log(product);
                         )}
                     </div>
 
-                    {/* Admin update link */}
+                    {/* Admin-only update product button */}
                     {users?.isadmin && (
                         <Link
                             to={`/admin/update-product/${product.id}`}

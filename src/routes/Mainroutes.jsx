@@ -2,7 +2,6 @@ import React, { lazy } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
-const Home = lazy(() => import("../Pages/Home"));
 const FashionHome = lazy(() => import("../Pages/FashionHome"));
 const Products = lazy(() => import("../Pages/Products"));
 
@@ -13,9 +12,11 @@ const Kids = lazy(() => import("../Pages/Products_type/Kids"));
 const UpdateProduct = lazy(() => import('../Pages/admin/UpdateProduct'));
 const CreateProduct = lazy(() => import('../Pages/admin/CreateProduct'));
 const Productdetail = lazy(() => import('../Pages/Productdetail'));
+
 const Profile = lazy(() => import('../Pages/user/Profile'));
-const Pagenotfound = lazy(() => import('../Pagenotfound'));
-const Authwrapper = lazy(() => import('./Authwrapper'));
+const Pagenotfound = lazy(() => import('../Pages/Pagenotfound'));
+
+import Authwrapper from './Authwrapper';
 const Cart = lazy(() => import('../Pages/Cart'));
 const About = lazy(() => import('../Pages/About'));
 
@@ -38,17 +39,22 @@ const Mainroutes = ({ showLogin, setShowLogin, showRegister, setShowRegister }) 
       <Route path='/products/womens-wear' element={<Womens />} />
       <Route path='/products/kids-wear' element={<Kids />} />
       <Route path='/about' element={<About />} />
-
       <Route path='/product/:id' element={<Productdetail />} />
 
       {/* Admin Routes */}
-      <Route path='/admin/create-product' element={<Authwrapper><CreateProduct /></Authwrapper>} />
-      <Route path='/admin/update-product/:id' element={<Authwrapper><UpdateProduct /></Authwrapper>} />
+      <Route
+        path='/admin/create-product'
+        element={<Authwrapper requireAdmin={true}><CreateProduct /></Authwrapper>}
+      />
+
+      <Route
+        path='/admin/update-product/:id'
+        element={<Authwrapper requireAdmin={true}><UpdateProduct /></Authwrapper>}
+      />
 
       {/* User Routes */}
       <Route path='/user-profile' element={<Authwrapper><Profile /></Authwrapper>} />
       <Route path='/cart' element={<Authwrapper><Cart /></Authwrapper>} />
-
       {/* Fallback */}
       <Route path='*' element={<Pagenotfound />} />
     </Routes>
