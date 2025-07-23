@@ -17,7 +17,7 @@ const App = () => {
       "title": "Mens Hooded Sweatshirt",
       "type": "mens",
       "category": "top",
-      "price": "4166",
+      "price": "766",
       "description": "Trendy design suitable for all seasons. Lightweight and easy to maintain.",
       "image": ["./assets/Menswear/Hoddie/img1.webp", "./assets/Menswear/Hoddie/img2.webp", "./assets/Menswear/Hoddie/img3.webp"],
       "rating": {
@@ -30,7 +30,7 @@ const App = () => {
       "title": "Mens Slim Fit Trousers",
       "type": "mens",
       "category": "bottom",
-      "price": "2157",
+      "price": "725",
       "description": "Soft fabric for breathable comfort. Durable stitching and perfect fit.",
       "image": ["./assets/Menswear/Trouser1/img1.webp", "./assets/Menswear/Trouser1/img2.webp", "./assets/Menswear/Trouser1/img3.webp"],
       "rating": {
@@ -43,7 +43,7 @@ const App = () => {
       "title": "Kids Polo Shirt",
       "type": "kids",
       "category": "top",
-      "price": "3422",
+      "price": "322",
       "description": "Made from eco-friendly materials. Perfect for gifting as well.",
       "image": ["./assets/Kidswear/Polo t-shirt/img1.webp", "./assets/Kidswear/Polo t-shirt/img2.webp"],
       "rating": {
@@ -56,7 +56,7 @@ const App = () => {
       "title": "Kids Tank Top",
       "type": "kids",
       "category": "top",
-      "price": "3157",
+      "price": "357",
       "description": "Trendy design suitable for all seasons. Lightweight and easy to maintain.",
       "image": ["./assets/Kidswear/Kids Tank Top/img1.webp", "/assets/Kidswear/Kids Tank Top/img2.webp"],
       "rating": {
@@ -69,7 +69,7 @@ const App = () => {
       "title": "Kids Sweater",
       "type": "kids",
       "category": "top",
-      "price": "1529",
+      "price": "1129",
       "description": "Soft fabric for breathable comfort. Durable stitching and perfect fit.",
       "image": ["./assets/Kidswear/Sweater/img1.webp"],
       "rating": {
@@ -108,7 +108,7 @@ const App = () => {
       "title": "Womens Leggings",
       "type": "womens",
       "category": "bottom",
-      "price": "3316",
+      "price": "316",
       "description": "Ideal for casual wear with excellent quality and finish.",
       "image": ["./assets/Womenswear/Leggings/img1.webp", "./assets/Womenswear/Leggings/img2.webp", "./assets/Womenswear/Leggings/img3.webp"],
       "rating": {
@@ -134,7 +134,7 @@ const App = () => {
       "title": "Womens Mini Skirt",
       "type": "womens",
       "category": "bottom",
-      "price": "4863",
+      "price": "463",
       "description": "Soft fabric for breathable comfort. Durable stitching and perfect fit.",
       "image": ["./assets/Womenswear/Skirt1/img1.webp", "./assets/Womenswear/Skirt1/img1.webp"],
       "rating": {
@@ -147,7 +147,7 @@ const App = () => {
       "title": "Mens Hooded Sweatshirt",
       "type": "mens",
       "category": "top",
-      "price": "3350",
+      "price": "850",
       "description": "Ideal for casual wear with excellent quality and finish.",
       "image": ["./assets/Menswear/Sweatshirt1/Sweatshirt.webp", "./assets/Menswear/Sweatshirt1/Sweatshirt1.webp", "./assets/Menswear/Sweatshirt1/Sweatshirt2.webp"],
       "rating": {
@@ -160,7 +160,7 @@ const App = () => {
       "title": "Womens Off-Shoulder Top",
       "type": "womens",
       "category": "top",
-      "price": "2065",
+      "price": "355",
       "description": "Classic look with modern appeal. Great for everyday use.",
       "image": ["./assets/Womenswear/Top1/img1.webp", "./assets/Womenswear/Top1/img2.webp"],
       "rating": {
@@ -173,7 +173,7 @@ const App = () => {
       "title": "Kids Shorts",
       "type": "kids",
       "category": "bottom",
-      "price": "1561",
+      "price": "151",
       "description": "Classic look with modern appeal. Great for everyday use.",
       "image": ["./assets/Kidswear/Short/img.webp"],
       "rating": {
@@ -186,7 +186,7 @@ const App = () => {
       "title": "Mens Snapback Cap",
       "type": "mens",
       "category": "hat",
-      "price": "3934",
+      "price": "314",
       "description": "Made from eco-friendly materials. Perfect for gifting as well.",
       "image": ["./assets/Caps/Cap2/img.webp", "./assets/Caps/Cap2/img2.webp"],
       "rating": {
@@ -199,7 +199,7 @@ const App = () => {
       "title": "Womens Leggings",
       "type": "womens",
       "category": "bottom",
-      "price": "2146",
+      "price": "216",
       "description": "Soft fabric for breathable comfort. Durable stitching and perfect fit.",
       "image": ["./assets/Womenswear/Leggings/img1.webp", "./assets/Womenswear/Leggings/img2.webp", "./assets/Womenswear/Leggings/img3.webp"],
       "rating": {
@@ -212,7 +212,7 @@ const App = () => {
   "title": "Womens Palazzo Pants",
   "type": "womens",
   "category": "bottom",
-  "price": "3693",
+  "price": "393",
   "description": "Ideal for casual wear with excellent quality and finish.",
   "image": ["./assets/Womenswear/Plazzo1/img1.webp", "./assets/Womenswear/Plazzo1/img2.webp"],
   "rating": {
@@ -225,7 +225,7 @@ const App = () => {
   "title": "Mens Baseball Cap",
   "type": "mens",
   "category": "hat",
-  "price": "3717",
+  "price": "317",
   "description": "Ideal for casual wear with excellent quality and finish.",
   "image": ["./assets/Caps/Cap1/img1.webp"],
   "rating": {
@@ -238,7 +238,7 @@ const App = () => {
   "title": "Womens Pleated Skirt",
   "type": "womens",
   "category": "bottom",
-  "price": "2166",
+  "price": "216",
   "description": "Ideal for casual wear with excellent quality and finish.",
   "image": ["./assets/Womenswear/Skirt2/img1.webp", "./assets/Womenswear/Skirt2/img2.webp", "./assets/Womenswear/Skirt2/img3.webp"],
   "rating": {
@@ -264,7 +264,7 @@ const App = () => {
   "title": "Womens Crop Top",
   "type": "womens",
   "category": "top",
-  "price": "3662",
+  "price": "366",
   "description": "Soft fabric for breathable comfort. Durable stitching and perfect fit.",
   "image": ["./assets/Womenswear/Top2/img1.webp", "./assets/Womenswear/Top2/img2.webp"],
   "rating": {
@@ -290,7 +290,7 @@ const App = () => {
   "title": "Mens Hooded Sweatshirt",
   "type": "mens",
   "category": "top",
-  "price": "3510",
+  "price": "390",
   "description": "Classic look with modern appeal. Great for everyday use.",
   "image": ["./assets/Menswear/Sweatshirt2/img1.webp", "./assets/Menswear/Sweatshirt2/img2.webp", "./assets/Menswear/Sweatshirt2/img3webp"],
   "rating": {
@@ -303,7 +303,7 @@ const App = () => {
   "title": "Kids Hoodie",
   "type": "kids",
   "category": "top",
-  "price": "4585",
+  "price": "485",
   "description": "Made from eco-friendly materials. Perfect for gifting as well.",
   "image": ["./assets/Kidswear/Hoddie2/img1.webp", "./assets/Kidswear/Hoddie2/img2.webp"],
   "rating": {
@@ -316,7 +316,7 @@ const App = () => {
   "title": "Womens Off-Shoulder Top",
   "type": "womens",
   "category": "top",
-  "price": "3076",
+  "price": "306",
   "description": "Soft fabric for breathable comfort. Durable stitching and perfect fit.",
   "image": ["./assets/Womenswear/Top3/img1.webp", "./assets/Womenswear/Top3/img2.webp", "./assets/Womenswear/Top3/img3.webp"],
   "rating": {
@@ -329,7 +329,7 @@ const App = () => {
   "title": "Kids T-Shirt",
   "type": "kids",
   "category": "top",
-  "price": "4693",
+  "price": "463",
   "description": "Trendy design suitable for all seasons. Lightweight and easy to maintain.",
   "image": ["./assets/Kidswear/T-shirt/img1.webp", "./assets/Kidswear/T-shirt/img2.webp"],
   "rating": {
@@ -342,7 +342,7 @@ const App = () => {
   "title": "Womens trouser",
   "type": "womens",
   "category": "bottom",
-  "price": "3905",
+  "price": "395",
   "description": "Ideal for casual wear with excellent quality and finish.",
   "image": ["./assets/Womenswear/Trouser/img1.webp", "./assets/Womenswear/Trouser/img2.webp", "./assets/Womenswear/Trouser/img3.webp"],
   "rating": {
@@ -355,7 +355,7 @@ const App = () => {
   "title": "Womens Palazzo Pants",
   "type": "womens",
   "category": "bottom",
-  "price": "3447",
+  "price": "347",
   "description": "Trendy design suitable for all seasons. Lightweight and easy to maintain.",
   "image": ["./assets/Womenswear/Plazzo2/img1.webp", "./assets/Womenswear/Plazzo2/img2.webp", "./assets/Womenswear/Plazzo2/img3.webp"],
   "rating": {
@@ -368,7 +368,7 @@ const App = () => {
   "title": "Womens Palazzo Pants",
   "type": "womens",
   "category": "bottom",
-  "price": "2433",
+  "price": "433",
   "description": "Classic look with modern appeal. Great for everyday use.",
   "image": ["./assets/Womenswear/Plazzo3/img1.webp", "./assets/Womenswear/Plazzo3/img2.webp"],
   "rating": {
@@ -381,7 +381,7 @@ const App = () => {
   "title": "Mens Cargo Shorts",
   "type": "mens",
   "category": "bottom",
-  "price": "3109",
+  "price": "709",
   "description": "Made from eco-friendly materials. Perfect for gifting as well.",
   "image": ["./assets/Menswear/Short1/img1.webp", "./assets/Menswear/Short1/img2.webp", "./assets/Menswear/Short1/img3.webp"],
   "rating": {
@@ -394,7 +394,7 @@ const App = () => {
   "title": "Womens Tank Top",
   "type": "womens",
   "category": "top",
-  "price": "1901",
+  "price": "901",
   "description": "Made from eco-friendly materials. Perfect for gifting as well.",
   "image": ["./assets/Womenswear/Top4/img1.webp", "./assets/Womenswear/Top4/img2.webp"],
   "rating": {
@@ -407,7 +407,7 @@ const App = () => {
   "title": "Womens Crop Top",
   "type": "womens",
   "category": "top",
-  "price": "3909",
+  "price": "509",
   "description": "Ideal for casual wear with excellent quality and finish.",
   "image": ["./assets/Womenswear/Top5/img1.webp", "./assets/Womenswear/Top5/img2.webp", "./assets/Womenswear/Top5/img3.webp"],
   "rating": {
@@ -420,7 +420,7 @@ const App = () => {
   "title": "Womens Palazzo Pants",
   "type": "womens",
   "category": "bottom",
-  "price": "990",
+  "price": "600",
   "description": "Soft fabric for breathable comfort. Durable stitching and perfect fit.",
   "image": ["./assets/Womenswear/Plazzo4/img1.webp", "./assets/Womenswear/Plazzo4/img2.webp", "./assets/Womenswear/Plazzo4/img3.webp"],
   "rating": {
@@ -433,7 +433,7 @@ const App = () => {
   "title": "Mens Slim Fit Trousers",
   "type": "mens",
   "category": "bottom",
-  "price": "4831",
+  "price": "431",
   "description": "Trendy design suitable for all seasons. Lightweight and easy to maintain.",
   "image": ["./assets/Menswear/Trouser2/img1.webp", "./assets/Menswear/Trouser2/img2.webp", "./assets/Menswear/Trouser2/img3.webp"],
   "rating": {
@@ -457,19 +457,20 @@ const App = () => {
     },
     {
       "id": "wEtsulqwdbCYtWRuJV7ae",
-      "fname": "Ronak",
-      "lname": "gurjar",
-      "username": "rounak01",
-      "email_id": "r1@gmail.com",
-      "password": "121212",
+      "fname": "Harsh",
+      "lname": "Sharma",
+      "username": "Harsh_sharma",
+      "email_id": "Sheryians@gmail.com",
+      "password": "123456",
       "isadmin": false,
+      "image": "./assets/Profile_img/Sheryians.png",
       "cart": []
     }
     ])); // or default user array
   }
   const dispatch = useDispatch();
 
-  const [showMain, setShowMain] = useState(true);
+  const [showMain, setShowMain] = useState(false);
   const [showLogin, setShowLogin] = useState(false);
   const [showRegister, setShowRegister] = useState(false);
 

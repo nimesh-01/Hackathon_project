@@ -1,9 +1,16 @@
 import React from 'react';
+import Galaxy from '../Libraries/Galaxy';
 
 const AboutElvish = () => {
   return (
-    <section className="bg-[#F5F5F5] py-20 px-6 md:px-20">
-      <div className="max-w-6xl mx-auto flex flex-col lg:flex-row gap-16 items-start">
+    <section className="relative h-auto bg-black py-20 px-6 md:px-20 overflow-hidden">
+      {/* Galaxy background */}
+      <div className="absolute inset-0 z-0">
+        <Galaxy />
+      </div>
+
+      {/* Main content */}
+      <div className="relative z-10 max-w-6xl mx-auto flex flex-col lg:flex-row gap-16 items-start">
         {/* Image */}
         <div className="flex-shrink-0 mx-auto lg:mx-0">
           <img
@@ -14,16 +21,16 @@ const AboutElvish = () => {
         </div>
 
         {/* Content */}
-        <div className="flex-1 text-[#4B2F26]">
-          <h1 className="text-5xl font-bold text-[#6D4C41] mb-4">Meet Elvish Yadav</h1>
-          <h2 className="text-2xl font-semibold text-[#8D6E63] mb-8">
+        <div className="flex-1 text-[#F5F5F5]">
+          <h1 className="text-5xl font-bold text-[#FFE0B2] mb-4">Meet Elvish Yadav</h1>
+          <h2 className="text-2xl font-semibold text-[#FFCCBC] mb-8">
             YouTuber • Influencer • Entrepreneur
           </h2>
 
           {/* Biography Highlights */}
           <div className="space-y-6 text-lg leading-relaxed">
             <p>
-              <strong className="text-[#6D4C41]">Elvish Yadav</strong> is a popular Indian YouTuber, content creator, and
+              <strong className="text-[#FFB74D]">Elvish Yadav</strong> is a popular Indian YouTuber, content creator, and
               founder of <strong>Systumm Clothing</strong>. With over <strong>10 million YouTube subscribers</strong> and
               <strong> 7 million Instagram followers</strong>, he's known for his energetic Haryanvi roasting videos.
             </p>
@@ -45,7 +52,7 @@ const AboutElvish = () => {
           </div>
 
           {/* Personal Info Grid */}
-          <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 gap-6 bg-[#D7CCC8] p-6 rounded-xl shadow-inner text-[#4B2F26]">
+          <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 gap-6 bg-[#D7CCC8] text-[#4B2F26] p-6 rounded-xl shadow-inner">
             <div><strong className="text-[#6D4C41]">Full Name:</strong> Elvish Yadav</div>
             <div><strong className="text-[#6D4C41]">Age:</strong> 26 (as of 2023)</div>
             <div><strong className="text-[#6D4C41]">Birthplace:</strong> Gurgaon, Haryana</div>
@@ -58,8 +65,8 @@ const AboutElvish = () => {
 
           {/* Social Media Stats */}
           <div className="mt-10">
-            <h3 className="text-2xl font-semibold text-[#6D4C41] mb-3">Social Media Presence</h3>
-            <ul className="list-disc list-inside space-y-2 text-lg text-[#4B2F26]">
+            <h3 className="text-2xl font-semibold text-[#FFE0B2] mb-3">Social Media Presence</h3>
+            <ul className="list-disc list-inside space-y-2 text-lg">
               <li>Instagram: 7.1 Million Followers</li>
               <li>YouTube: 10 Million Subscribers</li>
               <li>Active with over 1000+ posts on Instagram</li>

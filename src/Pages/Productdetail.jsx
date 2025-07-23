@@ -80,8 +80,8 @@ const Productdetail = () => {
     }
 
     return (
-        <div className="min-w-full flex justify-center bg-[#F5F5F5]">
-            <div className="w-[80%] mt-10 mb-20 flex flex-col md:flex-row gap-10 bg-white rounded-xl shadow-xl p-10">
+        <div className="min-w-full min-h-screen flex justify-center bg-[#F5F5F5]">
+            <div className="w-[80%] h-full mt-10 mb-20 flex flex-col md:flex-row gap-10 bg-white rounded-xl shadow-xl p-10">
 
                 {/* Left: Image + Thumbnails */}
                 <div className="w-full md:w-[50%] flex flex-col items-center gap-4 relative">

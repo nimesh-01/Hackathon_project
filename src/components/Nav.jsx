@@ -16,7 +16,7 @@ const Nav = ({ openLogin }) => {
     const [searchTerm, setSearchTerm] = useState('');
     const [menuOpen, setMenuOpen] = useState(false);
     const [showHeader, setShowHeader] = useState(true);
-    const lastScrollY = useRef(0);
+    const lastScrollY = useRef(window.scrollY);
     const menuRef = useRef();
 
     const currentPath = location.pathname;
@@ -36,12 +36,26 @@ const Nav = ({ openLogin }) => {
         }
     };
 
+    // ✅ Adjusted scroll behavior
     useEffect(() => {
+        const scrollThreshold = 80;
+
         const handleScroll = () => {
             const currentScroll = window.scrollY;
-            setShowHeader(currentScroll < lastScrollY.current);
+
+            if (Math.abs(currentScroll - lastScrollY.current) < 5) return; // ignore tiny scrolls
+
+            if (currentScroll > lastScrollY.current && currentScroll > scrollThreshold) {
+                // Scrolling down past threshold
+                setShowHeader(false);
+            } else {
+                // Scrolling up
+                setShowHeader(true);
+            }
+
             lastScrollY.current = currentScroll;
         };
+
         window.addEventListener('scroll', handleScroll);
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
@@ -61,11 +75,13 @@ const Nav = ({ openLogin }) => {
             navigate("/");
         }
     }, [user, currentPath, navigate]);
+
     const handleKeyDown = (e) => {
         if (e.key === 'Enter') {
             handleSearch();
         }
     };
+
     return (
         <header
             className={`w-full px-6 py-3 md:py-0 sticky top-0 z-50 bg-[#F5F5F5] transition-transform duration-300 ease-in-out ${showHeader ? 'translate-y-0' : '-translate-y-full'}`}
@@ -77,7 +93,7 @@ const Nav = ({ openLogin }) => {
                     SYS<span className="text-[#8D6E63]">TUMM</span>
                 </div>
 
-                {/* Search Bar visible on >= 500px */}
+                {/* Search Bar (>= 500px) */}
                 <div className="hidden sm:flex items-center gap-2 bg-white px-3 py-1 rounded-full border border-[#D7CCC8] search-bar mid-visible">
                     <input
                         type="text"
@@ -95,11 +111,8 @@ const Nav = ({ openLogin }) => {
                     </button>
                 </div>
 
-                {/* Desktop Navigation */}
-                <div
-                    className="hidden lg:flex px-3 py-2 my-3 mr-1 rounded-full flex-nowrap items-center gap-5 max-w-full overflow-hidden custom-shadow desktop-nav"
-                    style={{ boxShadow: "0 0 10px rgba(0, 0, 0, 0.5)" }}
-                >
+                {/* Desktop Nav */}
+                <div className="hidden lg:flex px-3 py-2 my-3 mr-1 rounded-full items-center gap-5 custom-shadow desktop-nav" style={{ boxShadow: "0 0 10px rgba(0, 0, 0, 0.5)" }}>
                     {currentPath !== "/About" && (
                         <NavLink to="/About" className="text-[#6D4C41] text-sm font-semibold hover:text-[#8D6E63] transition whitespace-nowrap">About</NavLink>
                     )}
@@ -152,7 +165,7 @@ const Nav = ({ openLogin }) => {
                         value={searchTerm}
                         onChange={(e) => setSearchTerm(e.target.value)}
                         placeholder="Search..."
-                          onKeyDown={handleKeyDown}
+                        onKeyDown={handleKeyDown}
                         className="w-full mb-2 px-3 py-1 border border-[#D7CCC8] rounded text-sm text-[#4E342E]"
                     />
                     <button
@@ -194,7 +207,7 @@ const Nav = ({ openLogin }) => {
                             dispatch(asynclogoutuser());
                             setMenuOpen(false);
                         }}
-                        className="block py-2 w-full text-left px-3 rounded-md hover:bg-[#6D4C41] hover:text-white"
+                        className="block py-2 w-full text-left px-3 rounded-md  hover:bg-[#6D4C41] hover:text-white"
                     >
                         Logout
                     </button>

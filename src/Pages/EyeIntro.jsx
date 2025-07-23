@@ -30,19 +30,19 @@ export default function EyeIntro({ onComplete }) {
     >
       {/* 🔷 Border Lines */}
       <div
-        className={`absolute top-10 left-0 h-1 bg-cyan-400 transition-all duration-[3000ms] 
+        className={`absolute top-10 left-0 h-1  bg-[#6D4C41] transition-all duration-[3000ms] 
           ${animate ? "w-full" : "w-0"}`}
       />
       <div
-        className={`absolute top-0 right-10 w-1 bg-cyan-400 transition-all duration-[3000ms] 
+        className={`absolute top-0 right-10 w-1  bg-[#6D4C41] transition-all duration-[3000ms] 
           ${animate ? "h-full" : "h-0"}`}
       />
       <div
-        className={`absolute bottom-10 left-0 h-1 bg-cyan-400 transition-all duration-[3000ms] 
+        className={`absolute bottom-10 left-0 h-1  bg-[#6D4C41] transition-all duration-[3000ms] 
           ${animate ? "w-full" : "w-0"}`}
       />
       <div
-        className={`absolute top-0 left-10 w-1 bg-cyan-400 transition-all duration-[3000ms] 
+        className={`absolute top-0 left-10 w-1  bg-[#6D4C41] transition-all duration-[3000ms] 
           ${animate ? "h-full" : "h-0"}`}
       />
 
@@ -55,7 +55,7 @@ export default function EyeIntro({ onComplete }) {
           `}
         >
           <img
-            src="./src/assets/Logo/Systumm_logo.avif"
+            src="./assets/Logo/Systumm_logo.avif"
             alt="Left Logo"
             className="h-24 object-contain"
           />
@@ -69,7 +69,7 @@ export default function EyeIntro({ onComplete }) {
           `}
         >
           <img
-            src="./src/assets/Logo/logos-removebg-preview.png"
+            src="./assets/Logo/logos-removebg-preview.png"
             alt="eye"
             className="h-[50%] object-cover"
           />
