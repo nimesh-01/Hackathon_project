@@ -2,8 +2,10 @@ import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { nanoid } from "nanoid";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 const CreateProduct = () => {
+  const navigate=useNavigate();
   const {
     register,
     handleSubmit,
@@ -60,6 +62,7 @@ const CreateProduct = () => {
     toast.success("Product Created!", { autoClose: 1000 });
     reset();
     setImageUrls([]);
+    navigate('/products')
   };
 
   return (
@@ -164,8 +167,8 @@ const CreateProduct = () => {
 
               <div className="grid grid-cols-5 gap-3 mt-3">
                 {imageUrls.map((url, i) => {
-                  const cleanUrl = url.startsWith(".") ? url.substring(1) : url;
-                  const previewUrl = `..\\..\\${cleanUrl}`;
+               
+                  const previewUrl = `${url}`;
                   return (
                     <div key={i} className="relative">
                       <img src={previewUrl} alt="preview" className="w-full h-15 object-cover rounded-md border" />

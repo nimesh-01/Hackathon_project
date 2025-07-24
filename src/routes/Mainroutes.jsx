@@ -62,8 +62,8 @@ const Mainroutes = ({ showLogin, setShowLogin, showRegister, setShowRegister }) 
       <Route path='/checkout' element={<Authwrapper><Checkout /></Authwrapper>} />
 
       {/* Privacy Routes */}
-      <Route path='/privacy' element={<Authwrapper><PrivacyPolicy /></Authwrapper>} />
-      <Route path='/terms-condition' element={<Authwrapper> <TermsAndConditions /> </Authwrapper>} />
+      <Route path='/privacy' element={<PrivacyPolicy />} />
+      <Route path='/terms-condition' element={<TermsAndConditions />} />
 
       {/* Fallback */}
       <Route path='*' element={<Pagenotfound />} />

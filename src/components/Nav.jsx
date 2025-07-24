@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { NavLink, useLocation, useNavigate } from 'react-router-dom';
+import { NavLink, useLocation, useNavigate,Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { asynclogoutuser } from '../Store/action/Useraction';
 import CircleTransition from './CircleTransition';
@@ -85,9 +85,11 @@ const Nav = ({ openLogin }) => {
                 style={{ boxShadow: '0 4px 10px rgba(109, 76, 65, 0.5)' }}
             >
                 <div className="w-full flex justify-between items-center gap-4 lg:justify-around">
-                    <div className="text-[#6D4C41] text-4xl font-bold tracking-wide whitespace-nowrap logo">
-                        SYS<span className="text-[#8D6E63]">TUMM</span>
-                    </div>
+                    <Link to="/">
+                        <div className="text-[#6D4C41] text-4xl font-bold tracking-wide whitespace-nowrap logo cursor-pointer">
+                            SYS<span className="text-[#8D6E63]">TUMM</span>
+                        </div>
+                    </Link>
 
                     <div className="hidden sm:flex items-center gap-2 bg-white px-3 py-1 rounded-full border border-[#D7CCC8]">
                         <input
@@ -106,7 +108,7 @@ const Nav = ({ openLogin }) => {
                         </button>
                     </div>
 
-                     <div className="hidden lg:flex px-3 py-2 my-3 mr-1 rounded-full items-center gap-5 custom-shadow desktop-nav" style={{ boxShadow: "0 0 10px rgba(0, 0, 0, 0.5)" }}>
+                    <div className="hidden lg:flex px-3 py-2 my-3 mr-1 rounded-full items-center gap-5 custom-shadow desktop-nav" style={{ boxShadow: "0 0 10px rgba(0, 0, 0, 0.5)" }}>
                         {currentPath !== "/About" && (
                             <button onClick={(e) => triggerTransition(e, "/About")} className="text-[#6D4C41] text-sm font-semibold hover:text-[#8D6E63]">
                                 About
@@ -162,63 +164,63 @@ const Nav = ({ openLogin }) => {
                 </div>
 
                 {/* Mobile Dropdown */}
-              <div
-  ref={menuRef}
-  className={`lg:hidden absolute right-6 mt-4 p-4 bg-white text-[#4E342E] rounded-xl shadow-lg transition-all duration-300 ease-in-out z-50 w-1/2 max-w-[90vw] ${menuOpen ? 'opacity-100 scale-100 translate-y-0' : 'opacity-0 scale-95 -translate-y-2 pointer-events-none'}`}
->
-  <div className="block sm:hidden mb-4">
-    <input
-      type="text"
-      value={searchTerm}
-      onChange={(e) => setSearchTerm(e.target.value)}
-      placeholder="Search..."
-      onKeyDown={handleKeyDown}
-      className="w-full mb-2 px-3 py-1 border border-[#D7CCC8] rounded text-sm"
-    />
-    <button
-      onClick={handleSearch}
-      className="w-full py-1 text-sm font-semibold bg-[#6D4C41] text-white rounded hover:bg-[#4E342E]"
-    >
-      Search
-    </button>
-  </div>
+                <div
+                    ref={menuRef}
+                    className={`lg:hidden absolute right-6 mt-4 p-4 bg-white text-[#4E342E] rounded-xl shadow-lg transition-all duration-300 ease-in-out z-50 w-1/2 max-w-[90vw] ${menuOpen ? 'opacity-100 scale-100 translate-y-0' : 'opacity-0 scale-95 -translate-y-2 pointer-events-none'}`}
+                >
+                    <div className="block sm:hidden mb-4">
+                        <input
+                            type="text"
+                            value={searchTerm}
+                            onChange={(e) => setSearchTerm(e.target.value)}
+                            placeholder="Search..."
+                            onKeyDown={handleKeyDown}
+                            className="w-full mb-2 px-3 py-1 border border-[#D7CCC8] rounded text-sm"
+                        />
+                        <button
+                            onClick={handleSearch}
+                            className="w-full py-1 text-sm font-semibold bg-[#6D4C41] text-white rounded hover:bg-[#4E342E]"
+                        >
+                            Search
+                        </button>
+                    </div>
 
-  {currentPath !== "/" && (
-    <button onClick={(e) => triggerTransition(e, "/", () => setMenuOpen(false))} className="block w-full text-left py-2 px-3 hover:bg-[#6D4C41] hover:text-white rounded-md">
-      Home
-    </button>
-  )}
-  {currentPath !== "/products" && (
-    <button onClick={(e) => triggerTransition(e, "/products", () => setMenuOpen(false))} className="block w-full text-left py-2 px-3 hover:bg-[#6D4C41] hover:text-white rounded-md">
-      Products
-    </button>
-  )}
-  {isAdmin && currentPath !== "/admin/create-product" && (
-    <button onClick={(e) => triggerTransition(e, "/admin/create-product", () => setMenuOpen(false))} className="block w-full text-left py-2 px-3 hover:bg-[#6D4C41] hover:text-white rounded-md">
-      Add Product
-    </button>
-  )}
-  {user && currentPath !== "/user-profile" && (
-    <button onClick={(e) => triggerTransition(e, "/user-profile", () => setMenuOpen(false))} className="block w-full text-left py-2 px-3 hover:bg-[#6D4C41] hover:text-white rounded-md">
-      Profile
-    </button>
-  )}
-  {user && currentPath !== "/cart" && (
-    <button onClick={(e) => triggerTransition(e, "/cart", () => setMenuOpen(false))} className="block w-full text-left py-2 px-3 hover:bg-[#6D4C41] hover:text-white rounded-md">
-      Cart
-    </button>
-  )}
+                    {currentPath !== "/" && (
+                        <button onClick={(e) => triggerTransition(e, "/", () => setMenuOpen(false))} className="block w-full text-left py-2 px-3 hover:bg-[#6D4C41] hover:text-white rounded-md">
+                            Home
+                        </button>
+                    )}
+                    {currentPath !== "/products" && (
+                        <button onClick={(e) => triggerTransition(e, "/products", () => setMenuOpen(false))} className="block w-full text-left py-2 px-3 hover:bg-[#6D4C41] hover:text-white rounded-md">
+                            Products
+                        </button>
+                    )}
+                    {isAdmin && currentPath !== "/admin/create-product" && (
+                        <button onClick={(e) => triggerTransition(e, "/admin/create-product", () => setMenuOpen(false))} className="block w-full text-left py-2 px-3 hover:bg-[#6D4C41] hover:text-white rounded-md">
+                            Add Product
+                        </button>
+                    )}
+                    {user && currentPath !== "/user-profile" && (
+                        <button onClick={(e) => triggerTransition(e, "/user-profile", () => setMenuOpen(false))} className="block w-full text-left py-2 px-3 hover:bg-[#6D4C41] hover:text-white rounded-md">
+                            Profile
+                        </button>
+                    )}
+                    {user && currentPath !== "/cart" && (
+                        <button onClick={(e) => triggerTransition(e, "/cart", () => setMenuOpen(false))} className="block w-full text-left py-2 px-3 hover:bg-[#6D4C41] hover:text-white rounded-md">
+                            Cart
+                        </button>
+                    )}
 
-  {!user ? (
-    <button onClick={() => { openLogin(); setMenuOpen(false); }} className="block w-full text-left py-2 px-3 hover:bg-[#6D4C41] hover:text-white rounded-md">
-      Login
-    </button>
-  ) : (
-    <button onClick={(e) => triggerTransition(e, "/", () => { dispatch(asynclogoutuser()); setMenuOpen(false); })} className="block w-full text-left py-2 px-3 hover:bg-[#6D4C41] hover:text-white rounded-md">
-      Logout
-    </button>
-  )}
-</div>
+                    {!user ? (
+                        <button onClick={() => { openLogin(); setMenuOpen(false); }} className="block w-full text-left py-2 px-3 hover:bg-[#6D4C41] hover:text-white rounded-md">
+                            Login
+                        </button>
+                    ) : (
+                        <button onClick={(e) => triggerTransition(e, "/", () => { dispatch(asynclogoutuser()); setMenuOpen(false); })} className="block w-full text-left py-2 px-3 hover:bg-[#6D4C41] hover:text-white rounded-md">
+                            Logout
+                        </button>
+                    )}
+                </div>
 
             </header >
 
