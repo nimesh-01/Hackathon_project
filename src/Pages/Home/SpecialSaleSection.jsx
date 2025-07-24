@@ -1,10 +1,10 @@
 import React from 'react';
-import ScrollVelocity from "../Libraries/ScrollVelocity";
-import ProfileCard from '../Libraries/ProfileCard/ProfileCard'
-import ScrollFloat from '../Libraries/ScrollFloat';
+import ScrollVelocity from "../../Libraries/ScrollVelocity";
+import ProfileCard from '../../Libraries/ProfileCard/ProfileCard'
+import ScrollFloat from '../../Libraries/ScrollFloat';
 const SpecialSaleSection = () => {
   return (
-    <section className="flex flex-col lg:flex-row items-center justify-center bg-black text-white w-full min-h-[80vh] p-4 lg:p-8 gap-8">
+    <section className="flex flex-col lg:flex-row items-center justify-center bg-black text-white w-full min-h-[70vh] p-4 lg:p-8 gap-8">
 
       {/* Left Image */}
       <ProfileCard

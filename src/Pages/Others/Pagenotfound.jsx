@@ -1,6 +1,6 @@
 import React from 'react';
-import SplitText from "../Libraries/SplitText";
-import BlurText from "../Libraries/BlurText";
+import SplitText from "../../Libraries/SplitText";
+import BlurText from "../../Libraries/BlurText";
 
 const Pagenotfound = () => {
   return (

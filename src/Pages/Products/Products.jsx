@@ -1,10 +1,10 @@
 import React, { Suspense, useEffect, useMemo, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, useLocation, useNavigate } from 'react-router-dom';
-import { asyncupdateprofile } from "../Store/action/Useraction";
+import { asyncupdateprofile } from "../../Store/action/Useraction";
 import { toast } from 'react-toastify';
 import Infinitescroll from "react-infinite-scroll-component";
-import Useinfiniteproducts from '../Utility/Useinfiniteproducts';
+import Useinfiniteproducts from '../../Utility/Useinfiniteproducts';
 
 const Products = () => {
   const dispatch = useDispatch();
@@ -14,7 +14,7 @@ const Products = () => {
   const location = useLocation();
   const [searchQuery, setSearchQuery] = useState('');
 
-  // Read from URL or dispatched event
+
   useEffect(() => {
     const urlQuery = new URLSearchParams(location.search).get('q') || '';
     setSearchQuery(urlQuery.toLowerCase());

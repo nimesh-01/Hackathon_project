@@ -1,10 +1,10 @@
 import React from "react";
 import ImageSlider from "./ImageSlider";
-import CurvedLoop from '../Libraries/CurvedLoop';
-import SplitText from '../Libraries/SplitText'
-import ScrollVelocity from '../Libraries/ScrollVelocity';
+import CurvedLoop from '../../Libraries/CurvedLoop';
+import SplitText from '../../Libraries/SplitText'
+import ScrollVelocity from '../../Libraries/ScrollVelocity';
 import InfoGrid from "./InfoGrid";
-import BlurText from '../Libraries/BlurText';
+import BlurText from '../../Libraries/BlurText';
 import SpecialSaleSection from "./SpecialSaleSection";
 import Footer from './Footer'
 import { NavLink ,useNavigate} from "react-router-dom";

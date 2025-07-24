@@ -1,5 +1,5 @@
 import { Globe, ShoppingCart, MessageCircle, ShieldCheck } from 'lucide-react';
-import SpotlightCard from '../Libraries/SpotlightCard';
+import SpotlightCard from '../../Libraries/SpotlightCard';
 const services = [
   {
     icon: <Globe className="h-8 w-8 text-[#D7CCC8]" />,

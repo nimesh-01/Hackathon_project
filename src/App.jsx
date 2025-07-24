@@ -4,10 +4,10 @@ import { asynccurrentuser } from './Store/action/Useraction';
 import { asyncloadproduct, asyncupdateproduct } from './Store/action/Productaction';
 import Mainroutes from './routes/Mainroutes';
 import Nav from './components/Nav';
-import ScrollToggleButton from "./Pages/ScrollToggleButton";
-import EyeIntro from "./Pages/EyeIntro";
-import Login from './Pages/Login';
-import Register from './Pages/Register';
+import ScrollToggleButton from "./Pages/Others/ScrollToggleButton";
+import EyeIntro from "./Pages/Others/EyeIntro";
+import Login from './Pages/IN_OUT/Login';
+import Register from './Pages/IN_OUT/Register';
 
 const App = () => {
     if (!localStorage.getItem("products")) {
@@ -460,7 +460,7 @@ const App = () => {
       "fname": "Harsh",
       "lname": "Sharma",
       "username": "Harsh_sharma",
-      "email_id": "Sheryians@gmail.com",
+      "email_id": "sheryians@gmail.com",
       "password": "123456",
       "isadmin": false,
       "image": "./assets/Profile_img/Sheryians.png",

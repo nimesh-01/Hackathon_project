@@ -225,17 +225,17 @@ const Profile = () => {
                 <span className="text-xl">＋</span> ADD A NEW ADDRESS
               </button>
 
-             {showForm && (
+           {showForm && (
   <form
     onSubmit={handleSubmit(onSubmitAddress)}
-    className="grid grid-cols-1 md:grid-cols-2 gap-4 bg-[#F5F5F5] p-4 rounded-lg"
+    className="grid grid-cols-1 md:grid-cols-2 gap-4 bg-[#F5F5F5] p-4 sm:p-6 md:p-8 rounded-lg w-full max-w-3xl mx-auto"
   >
     {/* Name */}
-    <div className="flex flex-col">
+    <div className="col-span-1 flex flex-col">
       <input
         placeholder="Name"
         {...register("name", { required: "Name is required" })}
-        className="border p-2 rounded"
+        className="border p-2 rounded w-full"
       />
       {errors.name && (
         <p className="text-red-500 text-sm mt-1">{errors.name.message}</p>
@@ -243,7 +243,7 @@ const Profile = () => {
     </div>
 
     {/* Phone */}
-    <div className="flex flex-col">
+    <div className="col-span-1 flex flex-col">
       <input
         placeholder="10-digit mobile number"
         {...register("phone", {
@@ -253,7 +253,7 @@ const Profile = () => {
             message: "Phone must be 10 digits",
           },
         })}
-        className="border p-2 rounded"
+        className="border p-2 rounded w-full"
       />
       {errors.phone && (
         <p className="text-red-500 text-sm mt-1">{errors.phone.message}</p>
@@ -261,11 +261,11 @@ const Profile = () => {
     </div>
 
     {/* Pincode */}
-    <div className="flex flex-col">
+    <div className="col-span-1 flex flex-col">
       <input
         placeholder="Pincode"
         {...register("pincode", { required: "Pincode is required" })}
-        className="border p-2 rounded"
+        className="border p-2 rounded w-full"
       />
       {errors.pincode && (
         <p className="text-red-500 text-sm mt-1">{errors.pincode.message}</p>
@@ -273,20 +273,20 @@ const Profile = () => {
     </div>
 
     {/* Locality (optional) */}
-    <div>
+    <div className="col-span-1 flex flex-col">
       <input
         placeholder="Locality"
         {...register("locality")}
-        className="border p-2 rounded"
+        className="border p-2 rounded w-full"
       />
     </div>
 
     {/* Address */}
-    <div className="flex flex-col md:col-span-2">
+    <div className="md:col-span-2 flex flex-col">
       <input
         placeholder="Address (Area and Street)"
         {...register("address", { required: "Address is required" })}
-        className="border p-2 rounded"
+        className="border p-2 rounded w-full"
       />
       {errors.address && (
         <p className="text-red-500 text-sm mt-1">{errors.address.message}</p>
@@ -294,11 +294,11 @@ const Profile = () => {
     </div>
 
     {/* City */}
-    <div className="flex flex-col">
+    <div className="col-span-1 flex flex-col">
       <input
         placeholder="City"
         {...register("city", { required: "City is required" })}
-        className="border p-2 rounded"
+        className="border p-2 rounded w-full"
       />
       {errors.city && (
         <p className="text-red-500 text-sm mt-1">{errors.city.message}</p>
@@ -306,70 +306,67 @@ const Profile = () => {
     </div>
 
     {/* State */}
-    <div className="flex flex-col">
+    <div className="col-span-1 flex flex-col">
       <input
         placeholder="State"
         {...register("state", { required: "State is required" })}
-        className="border p-2 rounded"
+        className="border p-2 rounded w-full"
       />
       {errors.state && (
         <p className="text-red-500 text-sm mt-1">{errors.state.message}</p>
       )}
     </div>
 
-    {/* Landmark (optional) */}
-    <div>
+    {/* Landmark */}
+    <div className="col-span-1 flex flex-col">
       <input
         placeholder="Landmark (Optional)"
         {...register("landmark")}
-        className="border p-2 rounded"
+        className="border p-2 rounded w-full"
       />
     </div>
 
-    {/* Alternate Phone (optional) */}
-    <div>
+    {/* Alternate Phone */}
+    <div className="col-span-1 flex flex-col">
       <input
         placeholder="Alternate Phone (Optional)"
         {...register("altPhone")}
-        className="border p-2 rounded"
+        className="border p-2 rounded w-full"
       />
     </div>
 
     {/* Address Type */}
-    <div className="flex items-center gap-4 mt-2 col-span-2">
-      <label>Address Type:</label>
-      <label>
-        <input
-          type="radio"
-          value="Home"
-          {...register("type")}
-          defaultChecked
-        />{" "}
-        Home
-      </label>
-      <label>
-        <input type="radio" value="Work" {...register("type")} /> Work
-      </label>
+    <div className="md:col-span-2 flex flex-col sm:flex-row items-start sm:items-center gap-2 mt-2">
+      <label className="font-medium">Address Type:</label>
+      <div className="flex gap-4">
+        <label className="flex items-center gap-1">
+          <input type="radio" value="Home" {...register("type")} defaultChecked /> Home
+        </label>
+        <label className="flex items-center gap-1">
+          <input type="radio" value="Work" {...register("type")} /> Work
+        </label>
+      </div>
     </div>
 
-    {/* Action Buttons */}
-    <div className="col-span-2 flex gap-4 mt-4">
+    {/* Buttons */}
+    <div className="md:col-span-2 flex flex-col sm:flex-row gap-4 mt-4">
       <button
         type="submit"
-        className="bg-[#6D4C41] text-white px-6 py-2 rounded-md hover:bg-[#8D6E63]"
+        className="bg-[#6D4C41] text-white px-6 py-2 rounded-md hover:bg-[#8D6E63] w-full sm:w-auto"
       >
         Save
       </button>
       <button
         type="button"
         onClick={resetForm}
-        className="border border-[#6D4C41] text-[#6D4C41] px-6 py-2 rounded-md hover:bg-[#EFEAE7]"
+        className="border border-[#6D4C41] text-[#6D4C41] px-6 py-2 rounded-md hover:bg-[#EFEAE7] w-full sm:w-auto"
       >
         Cancel
       </button>
     </div>
   </form>
 )}
+
 
 
               {/* Address Cards */}

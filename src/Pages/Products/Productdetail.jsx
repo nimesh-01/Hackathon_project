@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link, useParams, useNavigate, NavLink } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
-import { asyncupdateprofile } from '../Store/action/Useraction';
+import { asyncupdateprofile } from '../../Store/action/Useraction';
 
 const Productdetail = () => {
     const { id } = useParams();
@@ -67,7 +67,7 @@ const Productdetail = () => {
         const index = updatedUser.cart.findIndex(item => item.productId === id && item.size === selectedSize);
 
         if (index === -1) {
-            updatedUser.cart.push({ productId: id, quantity: 1, size: selectedSize });
+            updatedUser.cart.push({ productId: id, quantity: 1 });
         } else {
             updatedUser.cart[index].quantity += 1;
         }
@@ -78,6 +78,22 @@ const Productdetail = () => {
     if (!product) {
         return <p className="text-center text-xl mt-20">Loading product details...</p>;
     }
+
+    const handleBuyNow = () => {
+        if (!users) return;
+
+        if (!selectedSize) {
+            toast.error("Please select a size before buying", { autoClose: 800 });
+            return;
+        }
+
+        const buyItem = {
+            productId: id,
+            quantity: 1,
+        };
+
+        navigate('/checkout', { state: { items: [buyItem], fromBuyNow: true } });
+    };
 
     return (
         <div className="min-w-full min-h-screen flex justify-center bg-[#F5F5F5]">
@@ -165,12 +181,12 @@ const Productdetail = () => {
                                 >
                                     Add To Cart
                                 </button>
-                                <NavLink
-                                    to="/cart"
+                                <button
+                                    onClick={handleBuyNow}
                                     className="bg-[#FFA000] text-white font-semibold px-5 py-2 rounded-lg hover:bg-[#FFB300] transition text-center"
                                 >
-                                    Go to Cart
-                                </NavLink>
+                                    Buy Now
+                                </button>
                             </>
                         )}
                     </div>

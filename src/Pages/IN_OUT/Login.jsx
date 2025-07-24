@@ -1,33 +1,34 @@
 import { nanoid } from '@reduxjs/toolkit';
 import React, { useState } from 'react';
 import { useForm } from "react-hook-form";
+import { useNavigate } from 'react-router-dom';
+import { asyncloginuser } from '../../Store/action/Useraction';
 import { useDispatch } from 'react-redux';
-import { asyncregisteruser } from '../Store/action/Useraction';
 import { toast } from 'react-toastify';
 
-const Register = ({ onClose, switchToLogin }) => {
+const Login = ({ onClose, switchToRegister }) => {
+  const navigate = useNavigate();
   const { register, handleSubmit, formState: { errors } } = useForm();
   const dispatch = useDispatch();
   const [showPassword, setShowPassword] = useState(false);
 
-  const registerhandler = async (user) => {
-    user.id = nanoid();
-    user.isadmin = false;
-    user.cart = [];
-    await dispatch(asyncregisteruser(user));
-    toast.success("Registered successfully", { autoClose: 800 });
-    switchToLogin(); // Automatically go to login after registration
+  const loginhandler = async (user) => {
+    const data = await dispatch(asyncloginuser(user));
+    if (!data) {
+      toast.error("Invalid Email and password", { autoClose: 800 });
+    } else {
+      onClose(); // Close popup after successful login
+    }
   };
 
   return (
-    <div className="group transition-all duration-300 ease-in-out rounded-xl h-auto overflow-hidden w-[90%] md:w-[90%] max-w-[1000px] mx-auto bg-[#D7CCC8] text-[#6D4C41] flex flex-col md:flex-row md:items-stretch shadow-lg">
-      
+    <div className="group transition duration-300 ease-in-out rounded-xl overflow-hidden w-[95%] md:w-[90%] mx-auto  text-[#6D4C41] flex flex-col md:flex-row shadow-lg">
       {/* Left Image */}
-      <div className="md:w-1/2 bg-[#242124] w-full relative h-[200px] md:h-auto">
+      <div className="md:w-1/2 bg-[#242124] w-full relative h-[200px] md:h-[500px]">
         <img
-          src="./assets/loginpage-design.webp"
-          alt="Register Visual"
-          className="h-full w-full object-contain z-20"
+          src="./assets/Logo/logos-removebg-preview.png"
+          alt="Login Visual"
+          className="h-full w-full md:object-cover object-contain z-20"
         />
         <div className="absolute inset-0 bg-black/20 flex flex-col justify-between p-4 md:p-6 text-white">
           <div className="text-right">
@@ -44,49 +45,14 @@ const Register = ({ onClose, switchToLogin }) => {
 
       {/* Right Form */}
       <div className="md:w-1/2 w-full bg-[#A1887F] flex items-center justify-center p-4 md:p-8">
-        <form onSubmit={handleSubmit(registerhandler)} className="w-full max-w-md space-y-4 md:space-y-4 p-4 md:p-4 rounded-xl bg-[#F5F5F5] shadow-md">
-          <h2 className="text-2xl md:text-3xl font-bold text-center">Create Account</h2>
-
-          <div className="flex gap-4">
-            <div className="w-1/2">
-              <input
-                {...register("fname", { required: "First name is required" })}
-                placeholder="First name"
-                className="w-full p-2 md:p-3 outline-none rounded-md border border-[#A1887F] bg-white text-base"
-              />
-              <small className="text-red-400 text-xs">{errors?.fname?.message}</small>
-            </div>
-
-            <div className="w-1/2">
-              <input
-                {...register("lname")}
-                placeholder="Last name"
-                className="w-full p-2 md:p-3 outline-none rounded-md border border-[#A1887F] bg-white text-base"
-              />
-            </div>
-          </div>
+        <form onSubmit={handleSubmit(loginhandler)} className="w-full max-w-md space-y-4 md:space-y-6 p-4 md:p-6 rounded-xl bg-[#F5F5F5] shadow-md">
+          <h2 className="text-2xl md:text-3xl font-bold text-center">Login</h2>
 
           <div>
             <input
-              {...register("username", { required: "Username is required" })}
-              type="text"
-              placeholder="Username"
-              className="w-full p-2 outline-none md:p-3 rounded-md border border-[#A1887F] bg-white text-base"
-            />
-            <small className="text-red-400 text-xs">{errors?.username?.message}</small>
-          </div>
-
-          <div>
-            <input
-              {...register("email_id", {
-                required: "Email is required",
-                pattern: {
-                  value: /^\S+@\S+$/i,
-                  message: "Enter a valid email address",
-                },
-              })}
+              {...register("email_id", { required: "Invalid Email_Id" })}
               type="email"
-              placeholder="Email ID"
+              placeholder="nimesh01@gmail.com"
               className="w-full p-2 md:p-3 outline-none rounded-md border border-[#A1887F] bg-white text-base"
             />
             <small className="text-red-400 text-xs">{errors?.email_id?.message}</small>
@@ -94,15 +60,9 @@ const Register = ({ onClose, switchToLogin }) => {
 
           <div className="relative">
             <input
-              {...register("password", {
-                required: "Password is required",
-                minLength: {
-                  value: 6,
-                  message: "Password must be at least 6 characters",
-                },
-              })}
+              {...register("password", { required: "Invalid Password" })}
               type={showPassword ? "text" : "password"}
-              placeholder="Password"
+              placeholder="111111"
               className="w-full p-2 md:p-3 pr-10 outline-none rounded-md border border-[#A1887F] bg-white text-base"
             />
             <button
@@ -125,14 +85,11 @@ const Register = ({ onClose, switchToLogin }) => {
           </div>
 
           <button className="w-full py-2 md:py-3 bg-[#6D4C41] text-white rounded-md font-semibold hover:bg-[#8D6E63] transition duration-300">
-            Register
+            Login
           </button>
 
           <p className="text-xs md:text-sm text-center">
-            Already have an account?{" "}
-            <button onClick={switchToLogin} className="text-[#6D4C41] underline">
-              Login
-            </button>
+            Don't have an account? <button onClick={switchToRegister} className='text-[#6D4C41] underline'>Register</button>
           </p>
         </form>
       </div>
@@ -140,4 +97,4 @@ const Register = ({ onClose, switchToLogin }) => {
   );
 };
 
-export default Register;
+export default Login;

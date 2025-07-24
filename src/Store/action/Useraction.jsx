@@ -22,8 +22,11 @@ export const asynclogoutuser = () => async (dispatch, getState) => {
 
 export const asyncloginuser = (user) => async (dispatch, getState) => {
   const users = getStoredUsers();
+  console.log(user)
+  console.log(users)
+
   const match = users.find(
-    (u) => u.email === user.email && u.password === user.password
+    (u) => u.email_id === user.email_id && u.password === user.password
   );
   if (match) {
     localStorage.setItem("user", JSON.stringify(match));

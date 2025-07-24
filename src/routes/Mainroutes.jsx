@@ -2,8 +2,8 @@ import React, { lazy } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
-const FashionHome = lazy(() => import("../Pages/FashionHome"));
-const Products = lazy(() => import("../Pages/Products"));
+const FashionHome = lazy(() => import("../Pages/Home/FashionHome"));
+const Products = lazy(() => import("../Pages/Products/Products"));
 
 const Mens = lazy(() => import("../Pages/Products_type/Mens"));
 const Womens = lazy(() => import("../Pages/Products_type/Womens"));
@@ -11,15 +11,19 @@ const Kids = lazy(() => import("../Pages/Products_type/Kids"));
 
 const UpdateProduct = lazy(() => import('../Pages/admin/UpdateProduct'));
 const CreateProduct = lazy(() => import('../Pages/admin/CreateProduct'));
-const Productdetail = lazy(() => import('../Pages/Productdetail'));
+const Productdetail = lazy(() => import('../Pages/Products/Productdetail'));
 
 const Profile = lazy(() => import('../Pages/user/Profile'));
-const Pagenotfound = lazy(() => import('../Pages/Pagenotfound'));
+const Checkout = lazy(() => import('../Pages/Cart/Checkout'));
+
+const Pagenotfound = lazy(() => import('../Pages/Others/Pagenotfound'));
+
+const PrivacyPolicy = lazy(() => import('../Pages/information_pages/PrivacyPolicy'));
+const TermsAndConditions = lazy(() => import('../Pages/information_pages/TermsAndConditions '));
+const Cart = lazy(() => import('../Pages/Cart/Cart'));
+const About = lazy(() => import('../Pages/About/About'));
 
 import Authwrapper from './Authwrapper';
-const Cart = lazy(() => import('../Pages/Cart'));
-const About = lazy(() => import('../Pages/About'));
-
 
 const Mainroutes = ({ showLogin, setShowLogin, showRegister, setShowRegister }) => {
   const user = useSelector((state) => state.userreducer);
@@ -55,6 +59,12 @@ const Mainroutes = ({ showLogin, setShowLogin, showRegister, setShowRegister }) 
       {/* User Routes */}
       <Route path='/user-profile' element={<Authwrapper><Profile /></Authwrapper>} />
       <Route path='/cart' element={<Authwrapper><Cart /></Authwrapper>} />
+      <Route path='/checkout' element={<Authwrapper><Checkout /></Authwrapper>} />
+
+      {/* Privacy Routes */}
+      <Route path='/privacy' element={<Authwrapper><PrivacyPolicy /></Authwrapper>} />
+      <Route path='/terms-condition' element={<Authwrapper> <TermsAndConditions /> </Authwrapper>} />
+
       {/* Fallback */}
       <Route path='*' element={<Pagenotfound />} />
     </Routes>

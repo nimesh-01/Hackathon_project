@@ -1,5 +1,5 @@
 import React from 'react';
-import Galaxy from '../Libraries/Galaxy';
+import Galaxy from '../../Libraries/Galaxy';
 
 const AboutElvish = () => {
   return (

@@ -44,3 +44,12 @@
   bottom: 0;
   opacity: 1;
 }
+
+/* ✅ Mobile responsiveness (below 450px) */
+@media (max-width: 450px) {
+  .pc-card {
+    height: 60svh;
+    max-height: 400px;
+    border-radius: 20px;
+  }
+}
