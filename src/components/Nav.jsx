@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { NavLink, useLocation, useNavigate,Link } from 'react-router-dom';
+import { NavLink, useLocation, useNavigate, Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { asynclogoutuser } from '../Store/action/Useraction';
 import CircleTransition from './CircleTransition';
@@ -193,6 +193,11 @@ const Nav = ({ openLogin }) => {
                     {currentPath !== "/products" && (
                         <button onClick={(e) => triggerTransition(e, "/products", () => setMenuOpen(false))} className="block w-full text-left py-2 px-3 hover:bg-[#6D4C41] hover:text-white rounded-md">
                             Products
+                        </button>
+                    )}
+                    {currentPath !== "/About" && (
+                        <button onClick={(e) => triggerTransition(e, "/About", () => setMenuOpen(false))} className="block w-full text-left py-2 px-3 hover:bg-[#6D4C41] hover:text-white rounded-md">
+                            About
                         </button>
                     )}
                     {isAdmin && currentPath !== "/admin/create-product" && (
